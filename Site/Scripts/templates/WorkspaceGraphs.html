@@ -1,0 +1,73 @@
+<div class="container main-content">
+    <div class="well">
+        <div id="workspaceToolbar"></div>
+        <h2>نمودارها</h2>
+        <div class="panel panel-default graphs" style="display: block">
+            <div class="panel-heading">
+                <i class="fa fa-pagelines fa-fw"></i>نمودارها
+                <%if (isAdmin || _.contains(Model.getPersons(), person))
+                {%>
+                    <span data-toggle="modal" data-target="#add-graph-modal"><button class="btn btn-default btn-sm fa fa-plus pull-left" data-toggle="tooltip" title="نمودار جدید"></button></span>
+                    <!-- Add Graph Modal-->
+                    <div class="modal fade" id="add-graph-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">اضافه کردن نمودار به کتابخانه <%=Model.getWorkspaceTitle()%> </h4>
+                                </div>
+                                <div class="modal-footer" style="text-align: left;">
+                                    <input type="text" id="txt-graph-name" class="graph-control form-control" placeholder="نمودار <%=Model.getWorkspaceTitle()%>">
+                                    <button type="button" class="btn btn-primary" id="btn-add-graphs" onclick="AddGraph(<%=Model.getWorkspaceId()%>)">ذخیره</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <%}%>
+
+            </div>
+            <table class="table">
+                <% 
+                var inlineGraphs = _.filter(Model.getGraphs().models, function(element){
+                	return element.isGraphInline();
+                	});
+                for(var i=0 ; i < inlineGraphs.length; i++)
+                {
+                	var graph = inlineGraphs[i];
+                %>
+                    <tr id="<%=graph.getGraphId()%>" class="graphs-table-row">
+                        <td><a href="/GraphView/<%=graph.getGraphId()%>"><%=graph.getGraphTitle()%></a></td>
+                        <td style="text-align: center;"><%=graph.getPersonId()%></td>
+                        <td style="text-align: center;"><%=timeAgo(graph.getModifyDate())%></td>
+                        <%if (isAdmin || graph.getPersonId() == person.getPersonId())
+                        {%>
+                            <td style="text-align: center;"><i class="fa fa-trash" style="cursor: pointer;" onclick="removeGraphModal(<%=Model.getWorkspaceId()%>, <%=graph.getGraphId()%>)"/></td>
+                        <%}%>
+
+                    </tr>
+                <%}%>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Remove Graph Modal-->
+<div class="modal fade" id="remove-graph-modal" tabindex="-1" role="modal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">آیا مطمئن هستید؟</h4>
+            </div>
+            <div class="modal-footer" style="text-align: left;">
+                <input type="hidden" id="txtWorkspaceId" />
+                <input type="hidden" id="txtGraphId" />
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeGraph($('#txtWorkspaceId').val(), $('#txtGraphId').val())">حذف کن</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>

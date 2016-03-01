@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <script src="/Site/Scripts/general.js"></script>
+    <script>
+        function TestRegister() {
+            $.ajax({
+                type: "POST",
+                url: "/api/account/register",
+                dataType: "json",
+                data: { UserName: $("#UserName").val(), Password: $("#Password").val(), ConfirmPassword: $("#ConfirmPassword").val() },
+                success: function (data) {
+                    $("#Result").html(data);
+                },
+                error: function (xhr, status, error) {
+                    $("#Result").html(error);
+                }
+            });
+        }
+
+        function CreateAllPersons() {
+            $.ajax({
+                type: "POST",
+                url: "/Home/GetAllPersons",
+                dataType: "json",
+                data: {  },
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var user = data[i];
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost/api/account/register",
+                            dataType: "json",
+                            data: {
+                                UserName: user["PersonIdentity"],
+                                Email: user["PersonEmail"],
+                                FName: user["PersonName"],
+                                LName: user["PersonLastName"],
+                                Address: user["PersonAddress"],
+                                NationalCode: user["PersonNationalCode"],
+                                Password: user["PersonNationalCode"],
+                                ConfirmPassword: user["PersonNationalCode"]
+                            },
+                            success: function (data) {
+                                $("#Result").html("user " + data + " created");
+                            },
+                            error: function (xhr, status, error) {
+                                $("#Result").html(error);
+                            }
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $("#Result").html(error);
+                }
+            });
+        }
+
+        function TestLogin() {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/token",
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
+                data: { grant_type:'password', client_id:'MsktLib', UserName: $("#TUserName").val(), Password: $("#TPassword").val() },
+                success: function (data) {
+                    createCookie("token","Bearer " + data.access_token,1);
+                    $("#Result").html(JSON.stringify(data));
+                },
+                error: function (xhr, status, error) {
+                    $("#Result").html(error);
+                }
+            });
+        }
+
+        function TestRequest() {
+            $.ajax({
+                type: "GET",
+                url: "/api/protected",
+                dataType: "json",
+                headers: { Authorization: readCookie("token"), client_id: 'MsktLib' },
+                contentType: "application/json",
+                success: function (data) {
+                    $("#Result").html(JSON.stringify(data));
+                },
+                error: function (xhr, status, error) {
+                    $("#Result").html(error);
+                }
+            });
+        }
+
+        function ChangePass() {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:61243/api/account/changepass",
+                dataType: "json",
+                headers: {
+                    Authorization: readCookie("token"),
+                    Username: $("#CUserName").val(),
+                    OldPassword: $("#OldPassword").val(),
+                    NewPassword: $("#NewPassword").val(),
+                    ConfirmPassword: $("#ConfirmPassword").val()
+                },
+                contentType: "application/json",
+                success: function (data) {
+                    $("#Result").html(JSON.stringify(data));
+                },
+                error: function (xhr, status, error) {
+                    $("#Result").html(error);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Test SSO</h1>
+    UserName:           <input type="text" id="UserName" />
+    Password:           <input type="password" id="Password" />
+    ConfirmPassword:    <input type="password" id="ConfirmPassword" />
+    <br />
+    <button value="Register" onclick="TestRegister()">RegisterUser</button>
+
+    <hr />
+    UserName:           <input type="text" id="TUserName" />
+    Password:           <input type="password" id="TPassword" />
+    <br />
+    <button value="Login" onclick="TestLogin()">Login</button>
+
+    <hr />
+    UserName:           <input type="text" id="CUserName" />
+    OldPassword:        <input type="password" id="OldPassword" />
+    NewPassword:        <input type="password" id="NewPassword" />
+    ConfirmPassword:    <input type="password" id="ConfirmPassword" />
+    <br />
+    <button value="ChangePass" onclick="ChangePass()">ChangePass</button>
+    
+    <hr />
+    <button value="TestRequest" onclick="TestRequest()">ProtectedData</button>
+    <button value="CreateAllPersons" onclick="CreateAllPersons()">CreateAllPersons</button>
+
+    <hr />
+    <div id="Result">result</div>
+
+</body>
+</html>

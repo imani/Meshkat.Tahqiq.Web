@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>پژوهشگر</title>
+    <style id="bookletStyles" type="text/css"></style>
+    <!-- Style Sheets -->
+    <link href="/Site/Styles/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Site/Styles/ladda-themeless.min.css" rel="stylesheet" />
+    <link href="/Site/Styles/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="/Site/Styles/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/Site/Styles/meshkatTab.css" rel="stylesheet" />
+    <link href="/Site/Styles/jquery.ambiance.css" rel="stylesheet" />
+    <link href="/Site/Styles/fancytree/ui.fancytree.min.css" rel="stylesheet" />
+    <link href="/Site/Styles/fancytree/rtl.css" rel="stylesheet" />
+    <link href="/Site/Styles/booklet.css" rel="stylesheet" />
+    <link href="/Site/Styles/jquery-ui-overwrite.css" rel="stylesheet" />
+    <link href="/Site/Styles/meshkatBook.css" rel="stylesheet" />
+    <link href="/Site/Styles/comment.css" rel="stylesheet" />
+    <style>
+        .align {
+            border: 2px solid white;
+            width: 25px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .userHandle:hover {
+            fill: #7F7F7F;
+        }
+
+        .userHandle-icon {
+            pointer-Events: none;
+        }
+    </style>
+    
+    <!-- External Libraries-->
+    <script src="/Site/Scripts/Lib/jquery-1.10.2.js"></script>
+    <script src="/Site/Scripts/Lib/jquery-ui-1.10.4.min.js"></script>
+    <script src="/Site/Scripts/Lib/underscore-min.js"></script>
+    <script src="/Site/Scripts/Lib/backbone-min.js"></script>
+    <script src="/Site/Scripts/Lib/backbone-associations-min.js"></script>
+    <script src="/Site/Scripts/Lib/bootstrap.min.js"></script>
+    <script src="/Site/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="/Site/Scripts/tinymce/plugins/paste/plugin.min.js"></script>
+    <script src="/Site/Scripts/tinymce/plugins/autoresize/plugin.min.js"></script>
+    <script src="/Site/Scripts/tinymce/plugins/fullscreen/plugin.min.js"></script>
+    <!-- Application Scripts-->
+    <script src="/Site/Scripts/SSOServer.js"></script>
+    <script src="/Site/Scripts/general.js"></script>
+    <script src="/Site/Scripts/app.js"></script>
+    <script src="/Site/Scripts/router.js"></script>
+	<!--Models-->
+    <script src="/Site/Scripts/models/section.js"></script>
+    <script src="/Site/Scripts/models/graphModels/graphSectionRelation.js"></script>
+    <script src="/Site/Scripts/models/graphModels/graphElementRelation.js"></script>
+    <script src="/Site/Scripts/models/graphModels/graphElementType.js"></script>
+    <script src="/Site/Scripts/models/graphModels/graphLabel.js"></script>
+    <script src="/Site/Scripts/models/graphModels/graphElement.js"></script>
+    <script src="/Site/Scripts/models/graphModels/graph.js"></script>
+
+    <script src="/Site/Scripts/models/person.js"></script>
+    <script src="/Site/Scripts/models/workspace.js"></script>
+    <script src="/Site/Scripts/models/book.js"></script>
+    <script src="/Site/Scripts/models/stateItem.js"></script>
+    <script src="/Site/Scripts/models/userPreference.js"></script>
+    <script src="/Site/Scripts/models/bookCommentSubject.js"></script>
+    <script src="/Site/Scripts/models/bookVolume.js"></script>
+    <script src="/Site/Scripts/models/bookCommentField.js"></script>
+    <script src="/Site/Scripts/models/bookCommentFieldValue.js"></script>
+    <script src="/Site/Scripts/models/bookCommentType.js"></script>
+    <script src="/Site/Scripts/models/bookHighlight.js"></script>
+    <script src="/Site/Scripts/models/bookTableOfContent.js"></script>
+    <script src="/Site/Scripts/models/bookSectionStyle.js"></script>
+    <script src="/Site/Scripts/models/footnote.js"></script>
+    <script src="/Site/Scripts/models/bookParagraph.js"></script>
+    <script src="/Site/Scripts/models/ui/bookPage.js"></script>
+    <script src="/Site/Scripts/models/bookComment.js"></script>
+    <script src="/Site/Scripts/models/bookParagraphTag.js"></script>
+    <script src="/Site/Scripts/models/bookParagraphsBlock.js"></script>
+    <script src="/Site/Scripts/models/searchResultItems.js"></script>
+    
+
+    <!--Views-->
+    <script src="/Site/Scripts/views/appView.js"></script>
+    <script src="/Site/Scripts/views/tableOfContentView.js"></script>
+    <script src="/Site/Scripts/views/topBarView.js"></script>
+    <script src="/Site/Scripts/views/commentItemView.js"></script>
+    <script src="/Site/Scripts/views/graphviews/graphItemView.js"></script>
+    <script src="/Site/Scripts/views/commentsView.js"></script>
+    <script src="/Site/Scripts/views/editCommentView.js"></script>
+    <script src="/Site/Scripts/views/paragraphView.js"></script>
+    <script src="/Site/Scripts/views/pageView.js"></script>
+    <script src="/Site/Scripts/views/blockView.js"></script>
+    <script src="/Site/Scripts/views/bookletView.js"></script>
+    <script src="/Site/Scripts/views/volumeView.js"></script>
+    <script src="/Site/Scripts/views/searchView.js"></script>
+    <script src="/Site/Scripts/views/searchResultItemView.js"></script>
+    <script src="/Site/Scripts/views/timeoutView.js"></script>
+    <script src="/Site/Scripts/views/addPopupView.js"></script>
+    <script src="/Site/Scripts/views/tagItemView.js"></script>
+    <script src="/Site/Scripts/views/tagsView.js"></script>
+
+    <script src="/Site/Scripts/Lib/jquery.ba-outside-events.min.js"></script>
+    <script src="/Site/Scripts/Lib/jquery.layout-latest.min.js"></script>
+    <script src="/Site/Scripts/Lib/jquery.mousewheel.js"></script>
+    <script src="/Site/Scripts/Lib/rangy-core.js"></script>
+    <script src="/Site/Scripts/Lib/meshkatTab.js"></script>
+    <script src="/Site/Scripts/Lib/jquery.ambiance.js"></script>
+    <script src="/Site/Scripts/Lib/jquery.blockUI.js"></script>
+    <script src="/Site/Scripts/Lib/fancytree/jquery.fancytree.min.js"></script>
+    <script src="/Site/Scripts/Lib/renderEngine.js"></script>
+
+    <!-- Templates -->
+    <script id="tplAddBookVolumeDialog" type="text/template">
+        <label style="display: block;width: 300px">كتاب : </label>
+        <select style="width: 350px;" id="bookList"></select>
+        <div id="btnShowaddBookDialog" class="ToolbarButton alignRight fa fa-book" title="اضافه کردن کتاب"></div>
+        <br />
+        <label style="display: block;width: 300px">جلد : </label>
+        <input style="width: 350px" id="inputVolumeNumber" type="number" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" />
+        <br />
+        <label style="display: block;width: 300px">فايل : </label>
+        <input class="pointer" type="button" onclick="$('#inputBookFile').click(); return false;" value="انتخاب فایل" style="margin: 5px" />
+        <input type="text" id="fakeInput" style="width: 400px; direction: ltr;" />
+        <input id="inputBookFile" type="file" name="" style="display: none" />
+        <input id="btnAddBookVolumeFile" class="pointer" style="margin: 16px;float: left" type="button" name="name" value="اضافه کردن" />
+    </script>
+    <script id="tplAddBookDialog" type="text/template">
+        <input id="inputBookTitle" style="margin: 10px;width: 380px;" type="text" />
+        <input id="btnAddBook" class="pointer" style="margin: 10px;float: left" type="button" name="name" value="اضافه کردن" />
+    </script>
+    <script id="tplConfirmBookVolumeFileDialog" type="text/template">
+        <div id="confirmBookList">
+            <% result.forEach(function (item, index) {  %>
+            <div style="margin:10px">
+                <div style="width:50px;float:right;">
+                    <img style="width:30px;height:30px" src="/Site/Styles/images/word-icon.png">
+                </div>
+                <div style="width:300px;float:right;" id="<%= item.BookId %>">
+                    <%= item.Book.BookName %> جلد  <%= item.VolumeNumber %>
+                </div>
+                <div style="width:100px;float:right">
+                    <i id="btnDownloadBookFile" data="<%= item.VolumeId %>" style="margin-right:5px;color:rgb(189, 54, 95)" class="fa fa-download pointer"></i>
+                    <i id="btnUploadBookFile" data="<%= item.VolumeId %>" style="margin-right:5px;color:rgba(38, 133, 182, 0.69)" class="fa fa-upload pointer"></i>
+                    <i id="btnComfirmBookFile" data="<%= item.VolumeId %>" style="margin-right:5px;color:rgb(52, 181, 88)" class="fa fa-check-square pointer"></i>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <% }); %>
+        </div>
+    </script>
+    <script id="tplAddNewBookVolumeFileDialog" type="text/template">
+        <input class="pointer" type="button" onclick="$('#c_inputBookFile').click(); return false;" value="انتخاب فایل" style="margin: 5px" />
+        <input type="text" id="c_fakeInput" style="width: 400px; direction: ltr;" />
+        <input id="c_inputBookFile" type="file" name="" style="display: none" />
+        <input id="btnAddNewBookVolumeFile" class="pointer" style="margin: 10px;float: left" type="button" value="اضافه کردن" />
+    </script>
+    <script id="tplVolume" type="text/template">
+        <div id="scrollContainer"class="ui-layout-center"></div>
+        <div class='ui-layout-south volumeFooter'>
+            <span class="imgLazyLoading">
+                <img src="/Site/Styles/images/ajax-loader.gif" alt="در حال دریافت متن"/>
+            </span>
+            <div class="pageNumberPanel">
+                <span>صفحه </span>
+                <input class="txtPageNumber" type="text" />
+                <span>از</span>
+                <label class="lblPageCount"></label>
+            </div>
+        </div>
+    </script>
+    <script id="tplSearchResultItem" type="text/template">
+        <% var volumeInfo = resultItem.getVolumeInfo();%>
+
+        <div class="resultSource">
+            <%= resultNumber+" - "%>
+            <span class="bookName">
+                <%="کتاب "+volumeInfo.getBookName()+" - "%>
+            </span>
+            <span class="bookVolume">
+                <%if(volumeInfo.getVolumeNumber()!=0){%>
+                <%="جلد "+volumeInfo.getVolumeNumber()+" - "%>
+                <%}%>
+            </span>
+            <span class="pageNumber">
+                <%="صفحه "+resultItem.getParagraphPageNumber()%>
+            </span>
+        </div>
+        <div class="resultLink" data-id="">
+            <%=resultItem.getParagraphText()%>
+        </div>
+    </script>
+    <script id="tplCommentItem" type="text/template">
+        <div class="commentItem">
+            <div class="ui-layout-commentHeder">
+                <span class="commentTypeColor fa fa-circle"></span>
+                <span class="commenterName">
+                    <%=commentItem.getPersonName()%>
+                </span>
+                <span class="commentType">
+                    نوع توضیح :
+                    <%=commentItem.getType().getBookCommentTypeTitle() %>
+                </span>
+                <%if(canDelete){%>
+                    <span class="btnCommentHeader iconRemoveComment fa fa-times" style="float: left;" title="حذف"></span>
+                <%}%>
+                <%if(canModify){%>
+                    <span class="btnCommentHeader iconEditComment fa fa-pencil-square-o" title="ویرایش"></span>
+                <%}%>
+                <%if(canReply){%>
+                    <span class="btnCommentHeader iconReplyComment fa fa-reply" title="پاسخ"></span>
+                    <span id="commentExpand_<%=commentItem.getId()%>" class="btnCommentHeader iconViewReplyComment fa fa-plus-square" title="زیر پاسخ ها"></span>
+                    <%if(commentItem.getChildCount()>0){%>
+                        <span class="btnCommentHeader iconCommentCount" style="margin-top:-3px"><%=commentItem.getChildCount()%></span>
+                    <%}%>
+                <%}%>
+            </div>
+            <div class="ui-layout-center commentBody">
+                <%if(commentItem.getText().length<200) %>
+                    <%=commentItem.getText() %>
+                    <% else {%>
+                    <%=commentItem.getText().substring(0,commentItem.getText().substr(0,200).lastIndexOf(" ")) %>
+                    <span class="commentBody-more">(ادامه ...)</span>
+                    <% } %>
+            </div>
+            <div id="comment_<%=commentItem.getId()%>" style="margin-right:20px; border:1px #ddd solid; border-radius:8px"></div>
+        </div>
+    </script>
+    <script id="tplGraphItem" type="text/template">
+        <div class="graphItem">
+            <div class="ui-layout-graphHeder">
+                <span class="graphTypeColor fa fa-pagelines"></span>
+                <span class="graphName">
+                    <a target="_blank" href="/GraphView/<%=graphItem.getGraphId()%>#toc/<%=app.userTocId%>/paragraph/<%=graphItem.getSections().models[0].attributes.ParagraphId%>"><%=graphItem.getGraphElementTitle()%></a>
+                </span>
+                <%if(canDelete){%>
+                    <span class="btnCommentHeader iconRemoveGraph fa fa-times" style="float: left;" title="حذف"></span>
+                <%}%>
+                <%if(canClone){%>
+                    <span class="btnCommentHeader iconCloneGraph fa fa-clone" title="نسخه برداری"></span>
+                <%}%>
+            </div>
+        </div>
+    </script>
+    <script id="tplParagraph" type="text/template">
+        <% var carets = param.carets;%>
+
+    </script>
+    <script id="tplTag" type="text/template">
+        <span class="btn-remove-tag fa fa-times" title="حذف"></span>
+        <%=tag_text %>
+    </script>
+<script id="tplGraphDesigner" type="text/template">
+        <div class="graphToolbar">
+            <div class="btnPointer btnGraphToolbar ToolbarButton alignRight fa fa-mouse-pointer toolBarButtonSelected" title="ویرایش"></div>
+            <div class="btnPan btnGraphToolbar ToolbarButton alignRight fa fa-hand-pointer-o" title="پیمایش"></div>           
+            <div class="btnZoomin btnGraphToolbar ToolbarButton alignRight fa fa-search-plus" title="بزرگنمایی"></div>
+            <input type="text" class="txt-zoomFactor" />
+            <div class="btnZoomout btnGraphToolbar ToolbarButton alignRight fa fa-search-minus" title="کوچک‌نمایی"></div>
+            <div class="btnZoomFit btnGraphToolbar ToolbarButton alignRight fa fa-arrows-alt" title="تمام صفحه"></div>
+            <div class="btnSort btnGraphToolbar ToolbarButton alignRight fa fa-sort" title="مرتبسازی"></div>
+            <div class="btnUndo btnGraphToolbar ToolbarButton alignRight fa fa-undo" title="Undo"></div>
+            <div class="btnRedo btnGraphToolbar ToolbarButton alignRight fa fa-repeat" title="Redo"></div>
+        </div>
+        <div class="graphPanel" id="GraphPanel_<%=graphId%>">
+            <div id="<%=graphId%>" class="graphDiagram">
+
+            </div>
+        </div>
+    
+    </script>
+<script>
+    app.changeCommentType = false;
+    function filterComment() {
+        app.changeCommentType = true;
+        var block = app.currentVolumeView.currentBlockView.model.toJSON();
+        app.currentVolumeView.currentBlockView.model = new app.BookParagraphsBlock(block);
+        app.currentVolumeView.currentBlockView.render();
+        app.currentVolumeView.updatePage(true);
+        app.changeCommentType = false;
+    }
+</script>
+</head>
+<body>
+    <div id="bookletApplication">
+        <div id="topBar" class="ui-layout-north">
+            <a href="/Home" id="btnHome" class="ToolbarButton alignRight fa fa-home" title="صفحه اصلی"></a>
+            <div id="btnTableOfContent" class="ToolbarButton alignRight fa fa-list toolBarButtonSelected" title="فهرست مطالب"></div>
+            <div id="btnComments" class="ToolbarButton alignRight fa fa-comments" title="توضیحات"></div>
+            <div id="btnTags" class="ToolbarButton alignRight fa fa-tags" title="برچسب‌ها"></div>
+            <div id="btnGraphs" class="ToolbarButton alignRight fa fa-share-alt" title="گراف‌ها" style="display: none;"></div>
+            <div id="btnSearch" class="ToolbarButton alignRight fa fa-search" title="جستجو"></div>
+            <input id="txtSearch" data-style="expand-left" type="text" placeholder="جستجو..."/>
+            <div id="pnlUser">
+                <div id="loginForm" style="display: none;">
+                    <form id="loginForm" action="" style="display: flex; margin-top: 5px;">
+                        <div class="form-group">
+                            <input id="username" placeholder="نام کاربری (ایمیل)">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" placeholder="رمز">
+                        </div>
+                        <div class="alert alert-danger" id="loginError" role="alert" style="display: none;">
+                            <span class="sr-only">خطا:</span>
+                            نام کاربری (ایمیل) و یا رمز عبور اشتباه است.
+                        </div>
+                        <div class="form-group">
+                            <button id="loginButton" class="btn-default" data-style="zoom-in"><span class="ladda-label" style="font-size: 14px;">ورود</span></button>
+                        </div>
+                    </form>
+                </div>
+                <div id="pnlUserInfo" style="display: none;">
+                    <div id="pnlUserInfo">
+                        <span id="lblUserFullName"></span>
+                        <span id="btnLogout">(خروج)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="mainContent" class="ui-layout-center">
+            <div></div>
+            <div id="rightBar"></div>
+            <div id="leftBar"></div>
+            <div id="bookletPanel" class="ui-layout-center">
+                
+            </div>
+            
+            <div id="add-popup">
+                <li id="btn-add-comment" class="ToolbarButton alignRight fa fa-comment" title="توضیح"></li>
+                <li id="btn-add-highlight" class="ToolbarButton alignRight fa fa-italic" title="برجسته‌سازی"></li>
+                <li id="btn-add-tag" class="ToolbarButton alignRight fa fa-tag" title="برچسب"></li>
+                <li id="btn-add-graph" class="ToolbarButton alignRight fa fa-pagelines" title="ایجاد نمودار" />
+            </div>
+            
+            <div id="tableOfContentPanel" class="ui-layout-east">
+                <div class="ui-layout-north">
+                    <div id="addBookVolumeDialog" title="اضاضه کردن فايل"></div>
+                    <div id="addBookDialog" title="اضاضه کردن کتاب"></div>
+                    <input id="txtTOCSearch" class="txt-sidebar" placeholder="جستجو در فهرست .. ." type="text" />
+                </div>
+                <div class="ui-layout-center">
+                    <div id="tableOfContentTree"></div>
+                    <div id="tagsPanel"></div>
+                </div>
+            </div>
+
+            <div id="commentPanel" class="ui-layout-west" style="overflow: hidden;">
+                <table style="width: 95%; height: 100%; border-spacing: 0px 0px;">
+                    <tr>
+                        <td>
+                            <div id="commentTypePanel" style="width: 100%; height: 35px; padding: 3px; display: none" dir="rtl">
+                                <div style="float:right"> فیلتر &nbsp;</div>
+                                <div style="float:right">
+                                    <!-- @Html.DropDownList("cboCommentType", new SelectList(ViewBag.CommentType, "BookCommentTypeId", "BookCommentTypeTitle"), new { @onchange = "filterComment()" }) -->
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height: 100%;">
+                        <td style="padding: 0px;">
+                            <div id="currentCommentsPanel" style="margin-top: 20px">
+                            </div>
+                            <div id="newCommentArea" style="margin-top: 20px">
+                                <table class="tblComment">
+                                    <tr style="height: 100%;">
+                                        <td class="commentBodyCell">
+                                            <textarea id="txtNewComment" class="txtComment"></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 25px;">
+                                        <td>
+                                            <div class="select-style" style="float: right; margin-right: 5px;">
+                                                <span class="fa fa-sort-desc"></span>
+                                                <select id="cboNewCommentType"></select>
+                                            </div>
+                                            <button id="btnCancelSaveComment" class="btn-default" style="float: left;">انصراف</button>
+                                            <button id="btnSaveComment" class="btn-default" style="float: left; margin-left: 5px;">تایید</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="editCommentArea" style="margin-top: 20px">
+                                <table class="tblComment">
+                                    <tr style="height: 100%;">
+                                        <td class="commentBodyCell">
+                                            <textarea id="txtCommentEdit" class="txtComment"> </textarea>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 25px;">
+                                        <td>
+                                            <div class="select-style" style="float: right; margin-right: 5px;">
+                                                <span class="fa fa-sort-desc"></span>
+                                                <select id="cboEditCommentType"></select>
+                                            </div>
+
+                                            <button id="btnCancelEditComment" class="btn-default" style="float: left;">انصراف</button>
+                                            <button id="btnEditComment" class="btn-default" style="float: left; margin-left: 5px;">تایید</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+           
+        </div>
+        <div id="pnlTimeout" title="Basic dialog">
+            <div style="margin-bottom: 10px;">شما باید مجدداً وارد شوید.</div>
+            <span class="btn-default">تایید</span>
+        </div>
+
+        <!-- Add Graph Modal-->
+        <div class="modal fade" id="add-graph-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">اضافه کردن نمودار </h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" id="txt-graph-name" class="graph-control form-control" value="نمودار ">
+                    </div>
+                    <div class="modal-footer" style="text-align: left;">
+                        <button type="button" class="btn btn-primary" id="btn-add-graphs" onclick="AddGraph(app.userWorkspaceId);">ذخیره</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="confirmBookVolumeFileDialog" title=" تایید  کتاب ها"></div>
+        <div id="addNewBookVolumeFileDialog" title="اضاضه کردن فايل جديد"></div>
+    </div><script src="/Site/scripts/googleAnalytics.js"></script>
+</body>
+</html>
+

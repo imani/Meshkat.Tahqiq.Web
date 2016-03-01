@@ -1,0 +1,94 @@
+﻿.tabContainer {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    text-align: right;
+    height: 20px;
+    margin-bottom: 10px;
+    display: block;
+    background-color:#CCCCCC;
+    font-size:small;
+    border-bottom: solid 1px #ddd;
+}
+.tabBar {
+    margin: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    font-size: 0px;
+    position: absolute;
+    top: 0px;
+    left: 14px;
+    right: 14px;
+    height: 20px;
+    margin: auto;
+}
+.tabButton {
+    position: absolute;
+    top: 0px;
+    width: 14px;
+    cursor: pointer;
+    display: block;
+    background-color: #E8E8E8;
+    color: #1a868d;
+    height: 17px;
+    font-size: 14px;
+    padding-top: 3px;
+}
+.tabButtonOver {
+    color:#03b6b1;
+}
+.tabRightButton {
+    right: 0px;
+}
+.tabLeftButton {
+    left: 0px;
+}
+.tabButtonDisabled {
+    color: #a3a3a3;
+    background-color:#CCCCCC;
+    cursor:default;
+}
+.tabSpan {
+    line-height: 20px;
+    font-size: small;
+    background-color: #e6eafb;
+    cursor: pointer;
+    display: inline-block;
+    zoom: 1;
+    -webkit-user-select: none;
+    -webkit-box-sizing: border-box;
+    color: #929292;
+}
+
+.tabBox {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.tabSpan:hover {
+    background-color: #d2d9f8;
+}
+
+.tabSelected {
+    background-color: #84b0e1;
+    color: #ffffff;
+}
+
+    .tabSelected:hover {
+        background-color: #84b0e1;
+        color: #ffffff;
+    }
+
+.tabClose {
+    font-size: 10px;
+    color: #808080;
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px;
+    visibility: hidden;
+}
+    .tabClose:hover {
+        color:#008b8b;
+    }

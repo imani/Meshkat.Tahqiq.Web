@@ -1,0 +1,17 @@
+﻿<div class="item">
+    <figure>
+        <a href="/Archive/<%=volume.getTableOfContentId()%>">
+            <img src="/Files/Images/books/<%=volume.getBook().getImage()%>" class="book-image" alt="Owl Image">
+        </a>
+        <figcaption data-toggle="modal" data-target="#<%=volume.getVolumeId()%>">
+            <h1>
+                <%=volume.getBook().getBookName()%>
+                <%if(volume.getVolumeNumber() > 0){%>
+                <%=" جلد "+ volume.getVolumeNumber()%>
+                <%}%>
+            </h1>
+            <p>نویسنده: <%=volume.getBook().getAuthor()%></p>
+            <p><%=volume.getBook().getPublisher()%></p>
+        </figcaption>
+    </figure>
+</div>

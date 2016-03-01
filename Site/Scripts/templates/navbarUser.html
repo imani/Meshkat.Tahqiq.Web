@@ -1,0 +1,26 @@
+﻿<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown mega-dropdown">
+            <a class="dropdown-toggle" style="padding-top: 10px; padding-bottom: 10px; cursor: pointer">
+                <img class="thumbnail" style="height: 35px; width: 35px; margin: 0; padding: 0; display: inline-block;" src="<%=person.getPersonImagePath()%>" onerror="this.onerror = null; this.src = '/Files/Images/guest.png';" />
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu mega-dropdown-demo">
+                <li align="center" class="well">
+                    <div><img class="img-responsive img-circle" style="padding:2%; margin: auto;" src="<%=person.getPersonImagePath()%>" onerror="this.onerror = null; this.src = '/Files/Images/guest.png';" /></div>
+                    <div><%=person.getPersonName()+" "+person.getPersonLastName()%></div>
+                    <a href="#profile" id="profile-button" class="btn btn-sm btn-default ladda-button dropdown-button" data-style="zoom-in" data-spinner-color="#696969"><span class="ladda-label">تنظیمات شخصی</span></a>
+                    <a href="#" onclick="Logout()" id="logout-button" class="btn btn-sm btn-default ladda-button dropdown-button" data-style="zoom-in" data-spinner-color="#696969"><span class="ladda-label">خروج</span></a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="navbar-brand" href="#home">
+                <span class="fa fa-bell"></span>
+                <%if (hasUnreadNotifications){%>
+                <span class="fa fa-circle"></span>
+                <%}%>
+            </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,242 @@
+﻿<title><%=Model.getWorkspaceTitle()%></title>
+<div class="container main-content">
+    <div class="well">
+
+       <div id="workspaceToolbar"></div>
+
+       <div id="workspaceContent">
+            <div class="panel panel-default volumes">
+                <div class="panel-heading">
+                    <i class="fa fa-book fa-fw"></i> کتاب‌ها
+                    <%if (Model.getWorkspaceOwner() == app.person.getPersonId()){%>
+                    <span data-toggle="modal" data-target="#add-volume-modal"><button class="btn btn-default btn-sm fa fa-plus pull-left" data-toggle="tooltip" title="کتاب جدید"></button></span>
+                    <%}%>
+                </div>
+                <div class="panel-body">
+                    <%for(i=0 ; i < Model.getBookVolumes().models.length ; i++){
+                    var volume=Model.getBookVolumes().models[i]; %>
+                    <div class="col-lg-2 col-md-3 col-xs-6 thumb volume" id="<%=volume.getVolumeId()%>" data-toggle="tooltip" title="<%=volume.getBook().getBookName()%>">
+                        <div class="thumbnail" href="#">
+                            <img class="img-responsive" src="/Files/Images/books/<%=volume.getBook().getImage()%>" alt="">
+                            <%if (app.isAdmin == true){%>
+                            <button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="removeVolume('<%=Model.getWorkspaceId()%>', '<%=volume.getVolumeId()%>')" style="position: absolute; right: 15px; top: 0;"></button>
+                            <%}%>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+
+            <div class="panel panel-default persons">
+                <div class="panel-heading">
+                    <i class="fa fa-users fa-fw"></i> همکاران
+                    <%if (Model.getWorkspaceOwner() == app.person.getPersonId()){%>
+                    <span data-toggle="modal" data-target="#add-person-modal"><button class="btn btn-default btn-sm fa fa-plus pull-left" data-toggle="tooltip" title="عضو جدید"></button></span>
+                    <%}%>
+                </div>
+                <div class="panel-body">
+                    <%for(i=0 ; i < Model.getPersons().models.length ; i++){
+                    var person=Model.getPersons().models[i];%>
+                    <div class="col-lg-1 col-md-2 col-xs-6 thumb person" id="<%=person.getPersonId()%>" data-toggle="tooltip" title="<%=person.getPersonName()%> <%=person.getPersonLastName()%>">
+                        <div class="thumbnail" href="#">
+                            <img class="img-responsive img-circle person-image" src="<%=person.getPersonImagePath()%>" alt="">
+                            <%if (app.isAdmin == true){%>
+                            <button type="button" class="btn btn-danger btn-xs fa fa-times" onclick="removeContributor('<%=Model.getWorkspaceId()%>', '<%=person.getPersonId()%>')" style="position: absolute; right: 15px; top: 0;"></button>
+                            <%}%>
+                        </div>
+                    </div>
+                    <%}%>
+
+                </div>
+            </div>
+
+            <div class="panel panel-default graphs" style="display: block">
+                <div class="panel-heading">
+                    <i class="fa fa-pagelines fa-fw"></i>نمودارها
+                    <%if (Model.getWorkspaceOwner() == app.person.getPersonId() || _.contains(Model.getPersons().models, app.person)){%>
+                    <span data-toggle="modal" data-target="#add-graph-modal"><button class="btn btn-default btn-sm fa fa-plus pull-left" data-toggle="tooltip" title="نمودار جدید"></button></span>
+                    <!-- Add Graph Modal-->
+                    <div class="modal fade" id="add-graph-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">اضافه کردن نمودار به کتابخانه <%=Model.getWorkspaceTitle()%> </h4>
+                                </div>
+                                <div class="modal-footer" style="text-align: left;">
+                                    <input type="text" id="txt-graph-name" class="graph-control form-control" placeholder="نمودار <%=Model.getWorkspaceTitle()%>">
+                                    <button type="button" class="btn btn-primary" id="btn-add-graphs" onclick="AddGraph('<%=Model.getWorkspaceId()%>')">ذخیره</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+
+                </div>
+                <table class="table">
+                    <%
+                    var graphs=_.where(Model.getGraphs().models, {'IsInline':'false'});
+                    for(i=0 ; i < graphs.length ; i++){
+                    var graph=graphs[i]; %>
+                    <tr id="<%=graph.getGraphId()%>" class="graphs-table-row">
+                        <td><a href="/GraphView/<%=graph.getGraphId()%>"><%=graph.getGraphTitle()%></a></td>
+                        <td style="text-align: center;"><%=graph.getPersonId()%></td>
+                        <td style="text-align: center;"><%=graph.getModifyDate()%>)</td>
+                        <%if (app.isAdmin || graph.getPersonId() == app.person.getPersonId()){%>
+                        <td style="text-align: center;"><i class="fa fa-trash" style="cursor:pointer;" onclick="removeGraphModal('<%=Model.getWorkspaceId()%>', '<%=graph.getGraphId()%>')" /></td>
+                        <%}%>
+
+                    </tr>
+                    <%}%>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Person Modal-->
+<div class="modal fade" id="add-person-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">اضافه کردن عضو به کتابخانه <%=Model.getWorkspaceTitle()%>  </h4>
+            </div>
+            <div class="modal-body">
+                <select class="persons-select js-states form-control" multiple="multiple" style="width:100%;"></select>
+            </div>
+            <div class="modal-footer" style="text-align: left;">
+                <button type="button" class="btn btn-primary" id="btn-add-contributor" onclick="AddContributors('<%=Model.getWorkspaceId()%>')">ذخیره</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Volume Modal-->
+<div class="modal fade" id="add-volume-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">اضافه کردن کتاب به کتابخانه <%=Model.getWorkspaceTitle()%> </h4>
+            </div>
+            <div class="modal-body">
+                <select class="volumes-select js-states form-control" multiple="multiple" style="width: 100%;"></select>
+            </div>
+            <div class="modal-footer" style="text-align: left;">
+                <button type="button" class="btn btn-primary" id="btn-add-volumes" onclick="AddVolumes('<%=Model.getWorkspaceId()%>')">ذخیره</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Remove Graph Modal-->
+<div class="modal fade" id="remove-graph-modal" tabindex="-1" role="modal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">آیا مطمئن هستید؟</h4>
+            </div>
+            <div class="modal-footer" style="text-align: left;">
+                <input type="hidden" id="txtWorkspaceId" />
+                <input type="hidden" id="txtGraphId" />
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeGraph($('#txtWorkspaceId').val(), $('#txtGraphId').val())">حذف کن</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('[data-toggle= tooltip]').tooltip();
+        $('.persons-select').select2({
+            placeholder: "نام و یا نام کاربری (ایمیل)",
+            dir: "rtl",
+            ajax: {
+                url: "/Home/SearchPersons",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        q: params.term, // search term
+                    };
+                },
+                processResults: function(data, page) {
+                    // parse the results into the format expected by Select2.
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            },
+            escapeMarkup: function(markup) {
+                if (markup === "Please enter 1 or more characters")
+                    return;
+                if (markup === "No results found") {
+                    return "کاربری پیدا نشد";
+                }
+                return markup;
+            }, // let our custom formatter work
+            minimumInputLength: 2,
+            templateResult: formatRepo, // omitted for brevity, see the source of this page
+            templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+        });
+
+        $('.volumes-select').select2({
+            placeholder: "نام کتاب",
+            dir: "rtl",
+            ajax: {
+                url: "/Home/SearchVolumes",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        query: params.term, // search term
+                    };
+                },
+                processResults: function(data, page) {
+                    // parse the results into the format expected by Select2.
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            },
+            escapeMarkup: function(markup) {
+                if (markup === "Please enter 1 or more characters")
+                    return;
+                if (markup === "No results found") {
+                    return "کتابی پیدا نشد";
+                }
+                return markup;
+            }, // let our custom formatter work
+            minimumInputLength: 1,
+            templateResult: formatRepo, // omitted for brevity, see the source of this page
+            templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+        });
+        $('.modal').on('hidden.bs.modal', function(e) {
+            $("input").val("");
+        });
+    });
+
+    function formatRepo(volume) {
+        if (volume.loading) return "در حال جستجو...";
+
+        var markup = '<div class="clearfix">' +
+            volume.text +
+            '</div>';
+        markup += '</div></div>';
+
+        return markup;
+    }
+
+    function formatRepoSelection(volume) {
+        return volume.text;
+    }
+</script>

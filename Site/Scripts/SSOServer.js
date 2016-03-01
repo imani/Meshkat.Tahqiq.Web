@@ -1,0 +1,1 @@
+﻿var SSOServer = "http://sso.hmeshkat.ir";

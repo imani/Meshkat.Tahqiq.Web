@@ -1,0 +1,34 @@
+﻿<ul class="nav navbar-nav navbar-left">
+    <li class="btn btn-primary" style="margin: 10px;" data-toggle="modal" onclick="createCookie('url', window.location.href, 1); window.open(SSOServer + '/Account/Register', '_blank')">ثبت نام</li>
+    <li class="dropdown mega-dropdown">
+        <a class="dropdown-toggle" style="cursor: pointer">ورود<b class="caret"></b></a>
+        <ul class="dropdown-menu mega-dropdown-demo" style="padding: 15px; min-width: 250px;">
+            <li>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<form id="loginForm" action="">-->
+                            <div class="form-group">
+                                <label class="sr-only" for="username">نام کاربری (ایمیل)</label>
+                                <input class="form-control" id="username" placeholder="نام کاربری (ایمیل)">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="password">رمز</label>
+                                <input type="password" class="form-control" id="password" placeholder="رمز">
+                            </div>
+                            <div class="alert alert-danger" id="loginError" role="alert" style="display: none;">
+                                <span class="sr-only">خطا:</span>
+                                نام کاربری (ایمیل) و یا رمز عبور اشتباه است.
+                            </div>
+                            <div class="form-group">
+                                <button id="loginButton" class="btn btn-success btn-block ladda-button" data-style="zoom-in"><span class="ladda-label">ورود</span></button>
+                            </div>
+                            <div class="form-group">
+                                <span class="ladda-label" data-toggle="modal" onclick="window.open(SSOServer + '/Account/ForgotPassword', '_blank')" style="cursor: pointer">رمز عبور را فراموش کرده اید؟</span>
+                            </div>
+                        <!--</form>-->
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>

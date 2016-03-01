@@ -1,0 +1,275 @@
+﻿.commentOptionsDiv {
+    padding: 5px;
+    margin-top: -1px;
+    margin-bottom: 2px;
+    height: 10%;
+}
+
+#newCommentArea {
+    position:absolute;
+    top:10px;
+    left:0;
+    bottom:0;
+    right:0;
+    padding:10px;
+    display: none;
+    background-color:#ffffff;
+}
+
+#editCommentArea {
+    position:absolute;
+    top:10px;
+    left:0;
+    bottom:0;
+    right:0;
+    padding:10px;
+    display: none;
+    background-color:#ffffff;
+}
+
+.commentItem {
+    margin: 2px;
+    margin-top: 5px;
+    margin-left: 5px;
+    min-height: 70px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    cursor: pointer;
+    font-size: small;
+    background-color: #FAFCFC;
+}
+
+.commentItem .commenterName {
+        color: #02969b;
+        font-size: x-small;
+    }
+
+.commentHeder {
+    padding-right: 2px;
+    padding-left: 2px;
+    color: #ffffff;
+}
+
+.commentBody-more {
+    color: #02b105;
+}
+
+.commentBody-more:hover {
+        color: #1497ae;
+    }
+
+.commentItem-selected {
+    background-color: #eceeff;
+}
+
+.commentItem-hover {
+    background-color: #f3f5fc;
+}
+
+.btnCommentHeader {
+    float: left;
+    margin-left: 5px;
+    color: #717171;
+    display: none;
+}
+
+.btnCommentHeader:hover {
+    color: #02969b;
+}
+
+.commentBody {
+    padding: 2px;
+    text-align: justify;
+    text-justify: inter-word;
+    overflow-x: hidden;
+}
+
+.commentTypeColor {
+    color: #02969b;
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+.txtEditComment {
+    width: 97%;
+    border: 1px ridge #b2b1b1;
+    display: block;
+    margin-bottom: 1px;
+    overflow-x: hidden;
+    font-family: 'BYekan';
+    margin-top: 2px;
+    height: 90%;
+}
+
+.editcommentTopBar {
+    color: white;
+    text-align: center;
+    padding: 2px;
+    font-size: 12px;
+    background-color: #84b0e1;
+}
+
+.commentOptionToolTip {
+    background-color: #b2b1b1;
+    color: #808080;
+    font-size: x-small;
+    font-family: 'BYekan';
+    border-radius: 0px;
+    border: 0px;
+    padding: 2px;
+}
+
+#currentCommentsPanel {
+    padding-left: 3px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position:absolute;
+    top:10px;
+    bottom:5px;
+    right:0px;
+    left:0px;
+}
+
+#editableContent {
+    height: 94%;
+    width: 100%;
+    border: 1px ridge #b2b1b1;
+    display: block;
+    margin-bottom: 1px;
+    overflow-x: hidden;
+    font-family: 'BYekan';
+    margin-top: 2px;
+}
+
+#editCommentOptions {
+    height: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.editButtons {
+    float: left;
+}
+
+.commentType {
+    display: none;
+    color: darkmagenta;
+    font-size: x-small;
+}
+
+select {
+    float: right;
+    padding-right: 25px;
+    margin: 0;
+    background: #f8f8f8;
+    color: #888;
+    border: none;
+    display: inline-block;
+    /*-webkit-appearance: none;
+    -moz-appearance: none;*/
+    cursor: pointer;
+}
+
+
+/*.lblCommentType {
+    position: relative;
+    float: right;
+    margin-top: 2px;
+}
+
+    .lblCommentType:after {
+        content: '<>';
+        font: 8px "Consolas", monospace;
+        color: #aaa;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        right: 8px;
+        top: 2px;
+        padding: 0 0 2px;
+        border-bottom: 1px solid #ddd;
+        position: absolute;
+        pointer-events: none;
+    }*/
+
+.error {
+    border-style: solid;
+    border-color: red;
+}
+
+.commentBarButton {
+    color:#9d9d9d;
+    margin:3px;
+    font-size:11px;
+    cursor:pointer;
+    padding:5px;
+}
+
+.commentBarButton:hover {
+    background-color:#9cbce0;
+    color:#ffffff;
+}
+
+.commentBarButton-selected {
+    color:#ffffff;
+    background-color:#84b0e1;
+}
+
+.tblComment {
+    width: 100%; border-spacing:0px 0px;
+}
+
+.commentBodyCell {
+    padding:0px;padding-bottom:5px;
+}
+
+.txtComment {
+    height: auto;
+    min-height: 200px;
+    text-align: justify;
+    word-break: break-all;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: solid 1px #d2e1f1;
+    font-size:small;
+    color:#2d4596;
+}
+
+
+
+
+
+.graphItem {
+    margin: 2px;
+    margin-top: 5px;
+    margin-left: 5px;
+    min-height: 40px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    cursor: pointer;
+    font-size: small;
+    background-color: #FAFCFC;
+}
+.graphItem-selected {
+    background-color: #eceeff;
+}
+
+.graphItem-hover {
+    background-color: #f3f5fc;
+}
+.btnGraphHeader {
+    float: left;
+    margin-left: 5px;
+    color: #717171;
+    display: none;
+}
+.btnGraphHeader:hover {
+    color: #02969b;
+}
+.graphBody {
+    padding: 2px;
+    text-align: justify;
+    text-justify: inter-word;
+    overflow-x: hidden;
+}

@@ -1,0 +1,66 @@
+
+<div class="container main-content">
+    <div class="well">
+        <div id="workspaceToolbar"></div>
+        <h2>کتاب‌ها</h2>
+        <!--<% /* _.each (Model.getBookVolumes(), function(value, key, list){ */ %>-->
+        <%for(i=0 ; i < Model.getBookVolumes().models.length ; i++){
+            var value=Model.getBookVolumes().models[i]; %>
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-pills " role="tablist">
+                    <li role="presentation" class="active"><a id="pill1" href="#volumeinfo-<%=value.getVolumeId()%>" aria-controls="volumeinfo" role="tab" data-toggle="pill">مشخصات</a></li>
+                    <li role="presentation"><a id="pill2" href="#volumeTags-<%=value.getVolumeId()%>" aria-controls="volumeTags" role="tab" data-toggle="pill" onclick="getVolumeTags('<%=value.getVolumeId()%>')">برچسب‌ها</a></li>
+                    <li role="presentation"><a id="pill3" href="#volumeActivities-<%=value.getVolumeId()%>" aria-controls="volumeActivities" role="tab" data-toggle="pill" onclick="showVolumeActivitiesChart('#activities-chart-<%=value.getVolumeId()%>')">فعالیت‌ها</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+
+                <div role="tabpanel">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="volumeinfo-<%=value.getVolumeId()%>">
+                            <div class="col-md-4 pull-right">
+                                <img src="/Files/Images/books/<%=value.getBook().getImage()%>" width="150px" class="book-image">
+                            </div>
+                            <div class="col-md-8">
+                                <h3><%=(value.getVolumeNumber() == 0 ? value.getBook().getBookName() : value.getBook().getBookName() + " (جلد "+ value.getVolumeNumber() + ")")%></h3>
+                                <h4><%=value.getBook().getDescription()%></h4>
+                                <p>
+                                    <strong>نویسنده: </strong> <%=value.getBook().getAuthor()%>
+                                </p>
+                                <p>
+                                    <strong>مترجم :</strong> <%=value.getBook().getTranslator()%>
+                                </p>
+                                <p>
+                                    <strong>ناشر: </strong> <%=value.getBook().Publisher%>
+                                </p>
+                                <%if (value.getBook().Categories != null){%>
+                                <p>
+                                    <strong>موضوعات: </strong> 
+                                    <%for(var i = 0;i < value.getBook().getCategories().length; i++){%>
+                                    <a href="#"><%=value.getBook().getCategories()[i].getCategoryTitle()%></a>
+                                    <%}%>
+                                </p>
+                                <%}%>
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="volumeTags-<%=value.getVolumeId()%>">
+                            <div class="row" id="tag-cloud-<%=value.getVolumeId()%>" style="text-align: center;">
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="volumeActivities-<%=value.getVolumeId()%>">
+                            <div class="row" id="activities-chart-<%=value.getVolumeId()%>" style="text-align: center; direction: ltr;">
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%}%>
+    </div>
+</div>

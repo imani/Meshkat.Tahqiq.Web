@@ -1,0 +1,55 @@
+﻿#GraphTopBar {
+    background-color: #F7F5F5;
+    border-bottom: 1px solid lightgray;
+}
+.align {
+    border: 2px solid white;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.userHandle:hover {
+    fill: #7F7F7F;
+}
+
+.userHandle-icon {
+    pointer-Events: none;
+}
+
+.graphDiagram {
+    height: 100%;
+}
+
+#graphPanel {
+    height: 800px;
+}
+
+.buttonDisabled {
+    color: lightgray;
+    pointer-events: none;
+    background-color: #F7F5F5 !important;
+}
+
+#linkPanel {
+    border-left: 1px solid lightgray;
+}
+#btnTableOfContentPanel {
+    background-color: white;
+    padding-left: 8px;
+}
+#btnTableOfContentPanel:hover {
+    color:  #84B0E1 ;
+}
+#tableOfContentTree {
+    direction: ltr;
+}
+.Meshkat-highlighted {
+    background-color: #84b0e1;
+}
+.svg-icon {
+    font-family: FontAwesome;
+}
+#graphAppContainer {
+    background-color: white !important;
+}

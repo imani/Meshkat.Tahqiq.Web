@@ -1,0 +1,36 @@
+﻿<!-- Carousel==================================================-->
+<div class="container marketing" id="homeContent" style="margin-top: 40px">
+    
+    <div class="row" id="categoryBooks">
+        <h1 class="" contenteditable="false"><%=category.getCategoryTitle()%></h1>
+
+
+        <%for(i=0 ; i < category.getBookVolumes().length ; i++){
+        volume=category.getBookVolumes().models[i]; %>
+        <div class="col-lg-2 col-md-3 col-xs-6 thumb volume">
+            <div class="thumbnail">
+                <figure>
+                    <img class="img-responsive book-image" src="/Files/Images/books/<%=volume.getBook().getImage()%>" alt="">
+                    <figcaption data-toggle="modal" data-target="#<%=volume.getVolumeId()%>">
+                        <h1><%=volume.getBook().getBookName()+(volume.getVolumeNumber() > 0 ? " جلد " + volume.getVolumeNumber() : "")%></h1>
+                        <p>نویسنده: <%=volume.getBook().getAuthor()%></p>
+                        <p><%=volume.getBook().getPublisher()%></p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <%}%>
+    </div>
+    <hr class="featurette-divider">
+    <!-- /.row -->
+    <!-- CATEGORIES -->
+    <div class="row" style="margin-top:-40px">
+        <h1 class="" contenteditable="false">موضوعات</h1>
+        <div class="owl-demo" id="categories">
+        </div>
+    </div>
+    <hr class="featurette-divider">
+
+
+</div>
+<!-- /.container -->

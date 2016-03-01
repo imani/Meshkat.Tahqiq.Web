@@ -1,0 +1,84 @@
+﻿/*
+ * Stylesheet for Ambiance - Notification Plugin for jQuery
+ * Version 1.0.1
+ *
+ * Copyright (c) 2012 Richard Hsu
+ * Documentation: http://www.github.com/richardhsu/jquery.ambiance
+ * Dual licensed under the MIT and GPL licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+ */
+
+/* Notification area will be top right but feel free to modify it below. */
+#ambiance-notification {
+    display: block;
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    z-index: 999999999;
+    font-family: 'BYekan';
+    font-size: 12px;
+}
+
+/* Built in custom styling for the notifications. */
+.ambiance-title {
+    font-weight: bold;
+}
+
+.ambiance {
+    float: right;
+    clear: both;
+    border: 3px solid transparent;
+}
+
+    .ambiance:hover {
+        /*border: 3px solid #DDDDDD;*/
+    }
+
+.ambiance-default, .ambiance-success, .ambiance-error {
+    padding: 10px;
+    margin: 10px -5px 10px 10px;
+    text-align: right;
+}
+
+.ambiance-default {
+    background: rgb(255, 250, 125);
+    color: #DDDDDD;
+    border: 1px solid rgb(255, 171, 171);
+}
+
+.ambiance-success {
+    background: #468847;
+    color: #FFFFFF;
+}
+
+.ambiance-error {
+    background: #b92d2a;
+    color: #F2DEDE;
+
+}
+
+/* Close button attributes -- based off Twitter Bootstrap alert close item. */
+.ambiance-close {
+    display: block;
+    position: relative;
+    top: -2px;
+    right: 0px;
+    color: #FFFFFF;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    filter: alpha(opacity=20);
+    text-decoration: none;
+    position: relative;
+    line-height: 14px;
+    margin-left: -5px;
+    margin-top: -5px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+    .ambiance-close:hover {
+        color: #BBBBBB;
+        cursor: pointer;
+    }

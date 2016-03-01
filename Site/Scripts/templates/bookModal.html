@@ -1,0 +1,68 @@
+﻿<div class="modal fade" id=<%=volume.getVolumeId()%> tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <ul class="nav nav-pills " role="tablist">
+                            <li role="presentation" class="active"><a id="pill1" href="#volumeinfo-<%=volume.getVolumeId()%>" aria-controls="volumeinfo" role="tab" data-toggle="pill">مشخصات</a></li>
+                            <li role="presentation"><a id="pill2" href="#volumeTags-<%=volume.getVolumeId()%>" aria-controls="volumeTags" role="tab" data-toggle="pill" onclick="getVolumeTags('<%=volume.getVolumeId()%>')">برچسب‌ها</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="modal-body">
+                        <div role="tabpanel">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="volumeinfo-<%=volume.getVolumeId()%>">
+                                    <div class="row">
+                                        <img src="/Files/Images/books/<%=volume.getBook().getImage()%>" class="book-image">
+                                    </div>
+                                    <h4><%=volume.getBook().getDescription()%></h4>
+                                    <p>
+                                        <strong>نویسنده: </strong> <%=volume.getBook().getAuthor()%>
+                                    </p>
+                                    <p>
+                                        <strong>مترجم :</strong> <%=volume.getBook().getTranslator()%>
+                                    </p>
+                                    <p>
+                                        <strong>ناشر: </strong> <%=volume.getBook().getPublisher()%>
+                                    </p>
+                                    <%/*if (volume.getBook().getCategories() != null){%>
+                                        <p>
+                                            <strong>موضوعات: </strong>
+                                            <%for(i=0; i < volume.getBook().getCategories().length ; i++){%>
+                                                <a href="#"><%=volume.getBook().getCategories().getCategoryTitle()%></a>
+                                            <%}%>
+                                        </p>
+                                    <%}*/%>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="volumeTags-<%=volume.getVolumeId()%>">
+                                    <div class="row" id="tag-cloud-<%=volume.getVolumeId()%>">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <%if (HasAccess==true){%>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    اضافه به کتابخانه <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+
+                                    <%for(i=0 ; i < personWorkspaces.length ; i++){%>
+                                        <li><a onclick="AddVolumes(personWorkspaces[i].getWorkspaceId(), [volume.getVolumeId()])">personWorkspaces[i].getWorkspaceTitle()</a></li>
+                                    <%}%>
+
+                                </ul>
+                            </div>
+                        <%}%>
+                        <button type="button" class="btn btn-primary" onclick="location.href='/Library#volume/<%=volume.getVolumeId()%>/toc/-1'"> شروع مطالعه</button>
+                    </div>
+                </div>
+            </div>
+        </div>

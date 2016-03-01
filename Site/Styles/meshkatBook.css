@@ -1,0 +1,112 @@
+﻿@font-face {
+    font-family: 'BYekan';
+    src: url('fonts/BYekan.eot?#') format('eot'), /* IE6–8 */
+    url('fonts/BYekan.ttf') format('truetype'); /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'BMitra';
+    src: url('fonts/BMitra.eot?#') format('eot'), /* IE6–8 */
+    url('fonts/BMitra.ttf') format('truetype'); /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'BLotus';
+    src: url('fonts/BLotus.eot?#') format('eot'), /* IE6–8 */
+    url('fonts/BLotus.ttf') format('truetype'); /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'QuranFont';
+    src: url('fonts/QuranFont.woff'), /* IE6–8 */
+    url('fonts/QuranFont.ttf') format('truetype'); /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.Meshkat-highlighted {
+    background-color:#f0ff32;
+}
+.Meshkat-commented {
+    background-color:#4ff4ff;
+}
+.Meshkat-commentedGraph {
+    background-color:#00ff7f;
+}
+.Meshkat-commentedhighlighted {
+    background-color:#97ff7e;
+}
+/************************************************************************************************************/
+.Meshkat-default {
+    color: #000;
+    font-family: 'BLotus';
+    font-size: 18px;
+}
+
+.Meshkat-page {
+    color: #d85b13;
+    font-family: 'BMitra';
+    font-size: 20px;
+}
+.Meshkat-pageHeader {
+    color: #257497;
+    /*display:none;
+    text-align: center;
+    border-bottom:dotted 1px #d85b13;
+    font-weight:bold;
+    font-size: 20px;*/
+}
+.Meshkat-title {
+    color:#1caee5;
+    font-family:'BLotus';
+        font-size: 22px;
+}
+.Meshkat-Text {
+    color:#000;
+    font-family:'BLotus';
+    font-size: 20px;
+}
+.Meshkat-sanad {
+    color: #9F03B9;
+    font-family:'BMitra';
+    font-size: 20px;
+}
+.Meshkat-Aye {
+    color:#008A07;
+    font-family:'QuranFont';
+    font-size: 20px;
+}
+.Meshkat-hadith {
+    color: #993030;
+    font-family: 'BMitra';
+    font-size: 20px;
+}
+.Meshkat-footnoteRef {
+    color:#001dff;
+    font-family: 'BLotus';
+    cursor: pointer;
+    font-size:20px;
+
+}
+.Meshkat-footnoteRef:hover {
+    color: limegreen;
+}
+.Meshkat-Quran {
+    color:#000000;
+    font-family:'QuranFont';
+    font-size: 20px;
+}
+.Meshkat-newWord {
+    color:#257497;
+    font-family:'BLotus';
+    font-size: 20px;
+}
+.Meshkat-Poem {
+    color:#d85b13;
+    font-family:'BLotus';
+    font-size: 20px;
+}

@@ -1,0 +1,45 @@
+﻿/********************** layout  **************************/
+.ui-layout-toggler {
+    background-color: transparent !important;
+}
+.ui-layout-toggler-hover {
+    background-color: transparent !important;
+}
+.ui-layout-east, .ui-layout-center, .ui-layout-west, .ui-layout-south {
+    direction: rtl;
+    overflow: auto;
+}
+
+.ui-layout-east, .ui-layout-west, .ui-layout-south {
+    background-color: white;
+}
+.ui-layout-resizer {
+}
+.ui-layout-pane {
+    background-color: transparent;
+}
+
+/********************** autocomplete  **************************/
+.ui-corner-all {
+    border-radius: 0px;
+}
+.ui-autocomplete {
+    list-style: none;
+    direction: rtl;
+}
+
+ul.ui-autocomplete {
+    font-size: small;
+    border-bottom: 1px solid #c7c7c7;
+    border-right: 1px solid #c7c7c7;
+    width: 5%;
+}
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+.ui-autocomplete-loading {
+    background: white url("images/ajax-loader.gif") right center no-repeat;
+  }

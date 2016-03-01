@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>ورود به سامانه</title>
+        <link href="../Styles/Login.css" rel="stylesheet" />
+        <link href="../Styles/jquery.ambiance.css" rel="stylesheet" />
+
+        <script src="../Scripts/Lib/jquery-1.10.2.js"></script>
+        <script src="../Scripts/Lib/jquery.ambiance.js"></script>
+        <script src="../Scripts/general.js"></script>
+        <script>
+            function goFullscreen(id) {
+                //
+                // Get the element that we want to take into fullscreen mode
+                var element = document.getElementById(id);
+
+                // These function will not exist in the browsers that don't support fullscreen mode yet, 
+                // so we'll have to check to see if they're available before calling them.
+
+                if (element.mozRequestFullScreen) {
+                    // This is how to go into fullscren mode in Firefox
+                    // Note the "moz" prefix, which is short for Mozilla.
+                    element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullScreen) {
+                    // This is how to go into fullscreen mode in Chrome and Safari
+                    // Both of those browsers are based on the Webkit project, hence the same prefix.
+                    element.webkitRequestFullScreen();
+                }
+                // Hooray, now we're in fullscreen mode!
+            }
+
+            function userFocus() {
+                $(".user-icon").css("right", "-47px");
+            }
+        </script>
+
+        <style>
+            body {
+                direction: rtl;
+                font-family: "BYekan";
+            }
+
+            .logo {
+                -moz-transition: opacity 0.5s ease;
+                -o-transition: opacity 0.5s ease;
+                -webkit-transition: opacity 0.5s ease;
+                margin-bottom: 30px;
+                margin-left: 100px;
+                margin-top: -430px;
+                opacity: 0.5;
+                transition: opacity 0.5s ease;
+                width: 70px;
+            }
+
+            .logo:hover { opacity: 1; }
+        </style>
+    </head>
+    <body>
+        <div style="color: white; font-family: BYekan; text-align: center;">نسخه آزمایشی</div>
+        <div style="color: white; font-family: BYekan; text-align: center;">2.7.8</div>
+        <section id="contentLogin">
+            <form novalidate="novalidate">
+                <img class="logo" src="../Styles/Images/security/Logo.png" />
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding-bottom: 5px;">
+                        <div class="user-icon"></div>
+                        <input class="loginInput"  type="text" placeholder="نام کاربری (ایمیل)" id="username" onfocus=" userFocus() " autofocus onblur=" userBlur() " onkeypress=" SignK(event) " onkeyup=" btnTransfer(event) " maxlength="25" />
+                    </li>
+                    <li style="padding-bottom: 5px;">
+                        <div class="pass-icon"></div>
+                        <input class="loginInput"  type="password" placeholder="گذرواژه" id="password" onfocus=" passFocus() " onblur=" passBlur() " onkeypress=" SignK(event) " onkeyup=" btnTransfer(event) " maxlength="15" onchange=" resetLoginBtnStyle() " />
+                    </li>
+                </ul>
+                <div id="coverBtn"></div>
+                <input id="loginBtn" type="button" onclick=" Login() " />
+            </form>
+        </section>
+        <a href="@CdnPath/Site/Htmls/Home.html" style="cursor: pointer; left: 49%; position: absolute; top: 55%;" onclick=" LoginWithGuest() ">کاربر میهمان</a>
+    </body>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            goFullscreen('contentLogin');
+            $('#username').focus();
+
+        });
+
+        function Login() {
+            $.ajax({
+                type: "GET",
+                url: ajaxPath.LOG_IN + "?userName=" + $('#username').val() + "&password=" + $('#password').val(),
+                dataType: "json",
+                success:
+                    function(data) {
+                        if (!CheckServiceResultIsSuccess(data)) {
+                            return;
+                        }
+                        window.location = path.HOME;
+                    },
+                error: function(xhr, status, error) {
+                    showMessage(error, messageList.ERROR_TITLE, "error", xhr.status);
+                },
+                contentType: "application/json; charset=utf-8",
+                cache: false
+            });
+        }
+
+        function LoginWithGuest() {
+            $.ajax({
+                type: "GET",
+                url: ajaxPath.LOG_INWITHGUEST,
+                dataType: "json",
+                success:
+                    function(data) {
+                        if (!CheckServiceResultIsSuccess(data)) {
+                            return;
+                        }
+                        window.location = path.HOME;
+                    },
+                error: function(xhr, status, error) {
+                    showMessage(error, messageList.ERROR_TITLE, "error", xhr.status);
+                },
+                contentType: "application/json; charset=utf-8",
+                cache: false
+            });
+        }
+
+/* function showMessage(messageText, title, type) {
+        $.ambiance({
+            message: messageText,
+            title: title,
+            type: type,
+            timeout: 5,
+            fade: true
+        });
+    }*/
+        function base64_encode(data) {
+            var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+            var o1,
+                o2,
+                o3,
+                h1,
+                h2,
+                h3,
+                h4,
+                bits,
+                i = 0,
+                ac = 0,
+                enc = '',
+                tmp_arr = [];
+
+            if (!data) {
+                return data;
+            }
+
+            do { // pack three octets into four hexets
+                o1 = data.charCodeAt(i++);
+                o2 = data.charCodeAt(i++);
+                o3 = data.charCodeAt(i++);
+
+                bits = o1 << 16 | o2 << 8 | o3;
+
+                h1 = bits >> 18 & 0x3f;
+                h2 = bits >> 12 & 0x3f;
+                h3 = bits >> 6 & 0x3f;
+                h4 = bits & 0x3f;
+
+                // use hexets to index into b64, and append result to encoded string
+                tmp_arr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
+            } while (i < data.length);
+
+            enc = tmp_arr.join('');
+
+            var r = data.length % 3;
+
+            return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
+        }
+
+        function Login_Success(data) {
+            if (data.Key == true) {
+                $("#contentLogin > form > input[type='button']").css("background-color", "rgb(9, 128, 37)");
+                $('#contentLogin').fadeOut("slow", openDesktop);
+            } else {
+                var msg = data.Value;
+                $.ambiance({
+                    message: msg,
+                    type: "error",
+                    timeout: 5
+                });
+
+                var widthScreen = ($(window).width() / 2) - (290 / 2);
+
+                $('#ambiance-notification').css('right', widthScreen);
+
+                $("#contentLogin > form > input[type='button']").css("background-color", "rgb(133, 21, 21)");
+            }
+        }
+
+        function Login_Error(x, e, msg) {
+
+            //alert(msg);
+
+            $.ambiance({
+                message: msg,
+                type: "error",
+                timeout: 5
+            });
+
+            $("#contentLogin > form > input[type='button']").css("background-color", "rgb(133, 21, 21)");
+        }
+
+        function btnTransfer(e) {
+
+            if (($('#username').val().length > 0) && ($('#password').val().length > 0)) {
+                showLoginBtn();
+                if (e.keyCode == 8) {
+                    $("#contentLogin > form > input[type='button']").css("background-color", "rgba(65, 72, 72, 0.75)");
+                }
+            } else {
+                hideLoginBtn();
+                if (e.keyCode == 8) {
+                    $("#contentLogin > form > input[type='button']").css("background-color", "rgba(65, 72, 72, 0.75)");
+                }
+            }
+        }
+
+        function SignK(e) {
+            e.which = e.which || e.keyCode || e.charCode || e.metaKey;
+            if (e.which == 13) {
+
+                Login();
+            } else {
+                resetLoginBtnStyle();
+            }
+        }
+
+        function resetLoginBtnStyle() {
+            $("#contentLogin > form > input[type='button']").css("background-color", "rgb(7, 153, 153)");
+        }
+
+        function showLoginBtn() {
+            $("#contentLogin > form > input[type='button']").css("right", "198px");
+        }
+
+        function hideLoginBtn() {
+            $("#contentLogin > form > input[type='button']").css("right", "108px");
+        }
+
+        $(function() {
+            $('#contentLogin').hide().fadeIn("slow");
+        });
+
+        function openDesktop() {
+            window.location = "/booklet/booklethome";
+        }
+
+        function userBlur() {
+            $(".user-icon").css("right", "-10px");
+        }
+
+        function passFocus() {
+            $(".pass-icon").css("right", "-47px");
+        }
+
+        function passBlur() {
+            $(".pass-icon").css("right", "-10px");
+        }
+    </script>
+</html>

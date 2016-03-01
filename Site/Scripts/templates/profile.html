@@ -1,0 +1,107 @@
+﻿<div class="container well" style="margin-top: 100px;">
+    <div class="col-lg-2 pull-right" style="text-align: center;">
+        <form id="profileImageForm" action="" method="POST">
+            <input type="file" id="profileImageUpload" style="display: none;" onchange="uploadImage('<%=person.getPersonIdentity()%>')"><br>
+        </form>
+        <label for="profileImageUpload">
+            <div id="image-container" data-toggle="tooltip" title="تغییر تصویر"><img src="<%=person.getPersonImagePath()%>" onerror="this.onerror = null; this.src = '/Files/Images/guest.png';" class="img-circle profileImage"></div>
+        </label>
+        <a class="btn" data-toggle="modal" data-target="#editProfileModal" onclick="loadProfile()">ویرایش اطلاعات</a>
+        <a class="btn" data-toggle="modal" data-target="#changePasswordModal">تغییر رمز عبور</a>
+    </div>
+
+    <div class="col-lg-10 pull-right">
+        <h3><%=person.getPersonName()%> <%=person.getPersonLastName()%></h3>
+        <h6><%=person.getPersonIdentity()%></h6>
+    </div>
+</div>
+
+<!-- Change password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="تغییر رمز عبور">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">تغییر رمز عبور</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input id="oldPassword" class="form-control input-lg" placeholder="رمز عبور فعلی" maxlength="60" type="password" title="پر کردن این فیلد الزامی است">
+                    <span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
+                </div>
+                <div class="input-group">
+                    <input id="newPassword" class="form-control input-lg" placeholder=" رمز عبور جدید" maxlength="60" type="password" title="پر کردن این فیلد الزامی است">
+                    <span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
+                </div>
+                <div class="input-group">
+                    <input id="confirmNewPassword" class="form-control input-lg" placeholder="تکرار رمز عبور جدید" maxlength="60" type="password" name="password_confirmation" title="پر کردن این فیلد الزامی است">
+                    <span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
+                </div>
+                <div class="alert alert-danger" id="changePasswordError" style="display: none;"><i class="fa fa-exclamation-circle"></i><span class="error-message">لطفا تمامی فیلدها را پر کنید.</span></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                <button type="button" class="btn btn-primary" onclick="tryChangePassword()">تایید</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="ویرایش اطلاعات">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">ویرایش اطلاعات</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input id="address" class="form-control input-lg" placeholder="آدرس" maxlength="100" type="text" name="address" value="" title="آدرس پست الکترونیکی">
+                    <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                </div>
+                <div class="input-group">
+                    <input id="name" class="form-control input-lg" placeholder="نام" maxlength="100" type="text" name="name" value="" title="نام">
+                    <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                </div>
+                <div class="input-group">
+                    <input id="lastName" class="form-control input-lg" placeholder="نام خانوادگی" maxlength="100" type="text" name="lastName" value="" title="نام خانوادگی">
+                    <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                </div>
+                <div class="alert alert-danger" id="editProfileError" style="display: none;"><i class="fa fa-exclamation-circle"></i><span class="error-message">لطفا تمامی فیلدها را پر کنید.</span></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editProfile('<%=person.getPersonId()%>')">تایید</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- crop image Modal-->
+<div class="modal fade" id="cropImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="cropImageModalLabel">ویرایش عکس</h4>
+            </div>
+            <div class="modal-body">
+                <div class="crop-container"><img src="<%=person.getPersonImagePath()%>" id="cropTarget"></div>
+            </div>
+            <div class="modal-footer">
+                <form id="cropForm" method="GET" action="/Account/CropImage" onsubmit="$('.profileImage').attr('src','')">
+                    <input type="hidden" id="username" name="username" value="<%=person.getPersonIdentity()%>" />
+                    <input type="hidden" id="imageName" name="imageName" />
+                    <input type="hidden" id="x" name="x" />
+                    <input type="hidden" id="y" name="y" />
+                    <input type="hidden" id="w" name="w" />
+                    <input type="hidden" id="h" name="h" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">لغو</button>
+                    <button type="submit" class="btn btn-primary">تایید</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,608 @@
+.contenthover { padding:20px 20px 10px 20px; cursor: pointer; }
+.contenthover, .contenthover h3, contenthover a { color:#fff; }
+.contenthover h3, .contenthover p { margin:0 0 10px 0; line-height:1.4em; padding:0; text-align: center; }
+.contenthover a.mybutton { display:block; float:left; padding:5px 10px; background:#3c9632; color:#fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+.contenthover a.mybutton:hover { background:#34742d }.contenthover { padding:20px 20px 10px 20px; }
+.contenthover, .contenthover h3, contenthover a { color:#fff; }
+.contenthover h3, .contenthover p { margin:0 0 10px 0; line-height:1.4em; padding:0; }
+.contenthover a.mybutton { display:block; float:left; padding:5px 10px; background:#3c9632; color:#fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+.contenthover a.mybutton:hover { background:#34742d }
+.contenthover button{ margin:auto; }
+
+@font-face {
+    font-family: 'BYekan';
+    src: url('fonts/BYekan.eot?#') format('eot'), /* IE6–8 */
+    url('fonts/BYekan.ttf') format('truetype'); /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'BMitra';
+    src: url('fonts/BMitra.eot?#') format('eot'), /* IE6–8 */
+    url('fonts/BMitra.ttf') format('truetype'); /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'BLotus';
+    src: url('fonts/BLotus.eot?#') format('eot'), /* IE6–8 */
+    url('fonts/BLotus.ttf') format('truetype'); /* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+#Tips-alert .fa {
+    display: block;
+}
+#Tips-alert .col-md-4 {
+    float: right;
+}
+#Tips-alert {
+    text-align: center;
+    position: relative;
+}
+
+.navbar-brand {
+    padding-top: 10px;
+}
+
+.navbar-brand .fa-bell {
+    display: inline-block; 
+    font-size: 1.5em;
+}
+
+.navbar-brand .fa-circle {
+    color: #5bc0de; 
+    display: inline-block;
+    position: absolute; 
+    top: 10px;
+    right: 15px;
+}
+.dropdown-button {
+    margin-top: 10px;
+}
+
+/*figure caption*/
+ 
+figure {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+    border: 3px solid #fff;
+}
+ 
+figure:hover figcaption {
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    filter: alpha(opacity=100);
+    opacity: 1;
+    top: 0;
+}
+ 
+figcaption {
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: alpha(opacity=0);
+    opacity: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+    text-align: center;
+}
+
+figcaption h1 {
+    font-size: 24px;
+}
+ 
+figure img {
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+    -o-transition: all 1.5s;
+    -ms-transition: all 1.5s;
+    transition: all 1.5s;
+}
+ 
+figure:hover img {
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+}
+ 
+figcaption h3 {
+    margin-top: 30%;
+}
+
+figure:hover h3,figure:hover p {
+    left: 0;
+}
+ 
+figcaption a {
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 4px 10px;
+    text-decoration: none;
+}
+ 
+figcaption a:hover {
+    color: #4f5856;
+    background: #fff;
+}
+
+.input-group {
+    direction: ltr;
+    margin: 20px 0px;
+}
+input {
+    direction: rtl;
+}
+li.select2-search--inline {
+    float: right !important;
+}
+.form-control {
+    margin-bottom: 10px;
+}
+select.form-control {
+    width: auto;
+}
+.navbar-transparent {
+      background: rgba(255,255,255,0.8);
+}
+.tagline {
+    padding-bottom: 80px;
+  text-shadow: 0 0 10px #000;
+  color: #fff;
+}
+.tooltip {
+    font-family: 'BMitra';
+}
+.thumb {
+    float: right;
+}
+.business-header {
+  height: 200px;
+  background: url('/Files/Images/ketabkhane.jpg') no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.mega-dropdown-demo ul{
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.navbar-right {
+    margin-right: 0px;
+}
+#books .item{
+  margin: 40px;
+}
+.owl-demo .item img{
+  float: right;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#categories .item{
+  margin: 10px;
+}
+
+/*
+* 	Owl Carousel Owl Demo Theme 
+*	v1.23
+*/
+
+.owl-theme .owl-controls{
+	margin-top: 10px;
+	text-align: center;
+}
+
+.owl-theme .owl-controls .owl-nav div {
+  position: absolute;
+}
+ 
+.owl-theme .owl-controls .owl-nav .owl-prev{
+  left: -25px;
+  top: 110px; 
+}
+ 
+.owl-theme .owl-controls .owl-nav .owl-next{
+  right: -25px;
+  top: 110px;
+}
+
+button {
+  font-family: 'BYekan';
+}
+div.wrapper{  
+    float:right; /* important */  
+    position:relative; /* important(so we can absolutely position the description div */ 
+    transition: transform 1s;
+    margin-left: 30px;
+}
+div.description{  
+    position:absolute; /* absolute position (so we can position it where we want)*/  
+    bottom:0px; /* position will be on bottom */  
+    left:0px;  
+    width:100%;
+    /* styling bellow */  
+    background-color:rgba(0, 102, 155, 0.6);
+    font-size:15px;  
+    color:white;  
+    filter:alpha(opacity=60); /* IE transparency */  
+}
+div.wrapper:hover{
+  transform: scale(1.05);
+}  
+h3.description_content{  
+    padding:10px;  
+    margin:0px;  
+    text-align: center;
+    font-size: 1.20em;
+}  
+div.navbar{
+  font-family: 'BYekan';
+}
+div.panel-heading{
+  font-family: 'BYekan';
+}
+.list-group{
+  direction: ltr;
+}
+.list-group-item{
+  text-align: right;
+  direction: rtl;
+}
+i.fa {
+  margin-left: 10px;
+}
+.book-image img{
+  position: relative;
+  box-shadow: 0 0 30px black;
+  margin: 20px auto;
+}
+.modal h4{
+  margin-right: 20px;
+  font-family: 'BYekan'
+}
+.modal-content {
+  text-align: center;
+}
+.modal-footer{
+  text-align: center;
+}
+.nav-pills li{
+  float: right;
+}
+.dropdown-menu{
+  text-align: right;
+}
+/* BOOTSTRAP 3.x GLOBAL STYLES
+-------------------------------------------------- */
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+  font-family: 'BMitra';
+  font-size: 14px;
+  direction: rtl;
+  background: url(../../Files/Images/brickwall.png);
+}
+
+.carousel-control{
+  direction: ltr;
+  }
+
+.carousel-indicators {
+    direction: ltr;
+}
+  
+ul.navbar-right
+li{
+  float: right;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 40px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 1;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 300px;
+  background-color:#555;
+}
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 400px;
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Pad the edges of the mobile views a bit */
+.marketing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  float: right;
+}
+
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 20px 0; /* Space out the Bootstrap <hr> more */
+}
+.featurette {
+  padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+  overflow: hidden; /* Vertically center images part 2: clear their floats. */
+}
+.featurette-image {
+  margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+}
+
+/* Give some space on the sides of the floated elements so text doesn't run right into it. */
+.featurette-image.pull-left {
+  margin-right: 40px;
+}
+.featurette-image.pull-right {
+  margin-left: 40px;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+  /* Remve the edge padding needed for mobile */
+  .marketing {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+    margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+  }
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .profileImage {
+      width: 140px;
+  }
+
+  #cropTarget {
+      width: 100%;
+  }
+
+  .crop-container {
+      max-width: 400px;
+      max-height: 300px;
+  }
+}
+
+.stylish{position: relative; display:block;width:150px;height:150px;border-radius:85px;border:5px solid #ccc;font-size:20px;color:#666;line-height:100px;text-align:center;text-decoration:none;text-shadow:0 1px 0 #fff;background: #ddd;margin: 0 auto; transition: all 1s ease;}.stylish:hover{border:5px solid #faebcc;color:#aaa;text-decoration:none;background: #fcf8e3;}
+.stylish svg{margin-top:15px}
+
+.search-input {    
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.notification{
+    position: relative;
+    padding-right: 60px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.notification i {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #bbb;
+}
+
+.notif-user-image {
+    display: inline-block;
+    width: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.notif-date {
+    font-weight: normal;
+    font-size: medium;
+    display: inline-block
+}
+
+.notif-comment-text {
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: top;
+    font-style: italic;
+    font-weight: normal;
+    color: #777777
+}
+
+.notificationFilter {
+    border: none;
+    cursor: pointer;
+}
+
+label {
+    font-family: 'byekan';
+}
+
+.main-content {
+    margin-top: 60px;
+}
+
+ ul.indicators li {
+    font-family: 'byekan';
+}
+
+/*d3 stacked chart area css*/
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.graphs-table-row:hover {
+    background-color: #f9f9f9;
+}
+
+h1 a:hover {
+    text-decoration: none;
+}
+
+.tags{
+    position: relative;
+    font-size: large;
+    font-weight: bold;
+}
+
+.tag-item {
+    background-color: #e4e4e4;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: default;
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 0 5px;
+}
+
+.tag-item span {
+    font-size: x-small;
+    font-weight: normal;
+}
+
+.tag-item span:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.book-link {
+    position: absolute; 
+    top: 25px;
+    left: 15px; 
+    cursor: pointer;
+}
+
+.sidebar-filters-list .list-group-item{
+    border: none;
+    cursor: pointer;
+}
+
+.chart-panel-body {
+    direction: ltr; 
+    text-align: center;
+}
+
+.vcard-stats {
+    display: table;
+    width: 100%;
+    border-top: solid lightgray 1px; 
+    border-bottom: solid lightgray 1px; 
+    padding-top: 12px; 
+    padding-bottom: 12px; 
+    margin-bottom: 12px
+}
+
+.vcard-stat-count {
+    display: block;
+    font-size: xx-large;
+}
+
+.vcard-stat {
+    display: table-cell;
+}
+
+.vcard-stat:hover {
+    color: #337ab7;
+    text-decoration: none;
+}
+.vcard-stat:hover span{
+    color: #337ab7;
+}

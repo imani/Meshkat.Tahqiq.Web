@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>پژوهشگر</title>
+    <style id="bookletStyles" type="text/css"></style>
+    <!---------------------------------- Style Sheets-------------------------------------->
+    <link href="@CdnPath/Site/Styles/ladda-themeless.min.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/meshkatTab.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/jquery.ambiance.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/fancytree/ui.fancytree.min.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/fancytree/rtl.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/booklet.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/jquery-ui-overwrite.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/meshkatBook.css" rel="stylesheet" />
+    <link href="@CdnPath/Site/Styles/comment.css" rel="stylesheet" />
+    
+    <!---------------------------- External Libraries-------------------------------------->
+    <script src="@CdnPath/Site/Scripts/Lib/ladda.min.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/spin.min.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/jquery-1.10.2.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/jquery-ui-1.10.4.min.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/underscore-min.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/backbone-min.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/backbone-associations-min.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/GoJSGraph/go.js"></script>
+
+
+
+    <!---------------------------- Application Scripts------------------------------------->
+    <script src="@CdnPath/Site/Scripts/general.js"></script>
+    <script src="@CdnPath/Site/Scripts/app.js"></script>
+    <script src="@CdnPath/Site/Scripts/router.js"></script>
+    <!-----Models--------->
+    <script src="@CdnPath/Site/Scripts/models/person.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/book.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/stateItem.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/userPreference.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/section.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookCommentSubject.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookVolume.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookCommentField.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookCommentFieldValue.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookCommentType.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookHighlight.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookTableOfContent.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookSectionStyle.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/footnote.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookParagraph.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/ui/bookPage.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookComment.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookParagraphTag.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/bookParagraphsBlock.js"></script>
+    <script src="@CdnPath/Site/Scripts/models/searchResultItems.js"></script>
+
+
+    <!-----Collections---->
+    <!-----Views----------->
+    <script src="@CdnPath/Site/Scripts/views/appView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/tableOfContentView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/addBookVolumeDialogView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/addBookDialogView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/addNewBookVolumeFileDialogView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/confirmBookVolumeFileDialogView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/topBarView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/commentItemView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/commentsView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/editCommentView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/paragraphView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/pageView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/blockView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/bookletView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/volumeView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/searchView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/searchResultItemView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/timeoutView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/addPopupView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/tagItemView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/graphView.js"></script>
+    <script src="@CdnPath/Site/Scripts/views/tagsView.js"></script>
+
+    <script src="@CdnPath/Site/Scripts/Lib/jquery.ba-outside-events.min.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/jquery.layout-latest.min.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/jquery.mousewheel.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/rangy-core.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/meshkatTab.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/jquery.ambiance.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/jquery.blockUI.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/fancytree/jquery.fancytree.min.js"></script>
+    <script src="@CdnPath/Site/Scripts/Lib/renderEngine.js"></script>
+
+    <!---------------------------- Templates----------------------------------------------->
+    <script id="tplAddBookVolumeDialog" type="text/template">
+        <label style="display: block;width: 300px">كتاب : </label>
+        <select style="width: 350px;" id="bookList"></select>
+        <div id="btnShowaddBookDialog" class="ToolbarButton alignRight fa fa-book" title="اضافه کردن کتاب"></div>
+        <br />
+        <label style="display: block;width: 300px">جلد : </label>
+        <input style="width: 350px" id="inputVolumeNumber" type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+        <br />
+        <label style="display: block;width: 300px">فايل : </label>
+        <input class="pointer" type="button" onclick="$('#inputBookFile').click(); return false;" value="انتخاب فایل" style="margin: 5px" />
+        <input type="text" id="fakeInput" style="width: 400px; direction: ltr;" />
+        <input id="inputBookFile" type="file" name="" style="display: none" />
+        <input id="btnAddBookVolumeFile" class="pointer" style="margin: 16px;float: left" type="button" name="name" value="اضافه کردن" />
+    </script>
+    <script id="tplAddBookDialog" type="text/template">
+        <input id="inputBookTitle" style="margin: 10px;width: 380px;" type="text" />
+        <input id="btnAddBook" class="pointer" style="margin: 10px;float: left" type="button" name="name" value="اضافه کردن" />
+    </script>
+    <script id="tplConfirmBookVolumeFileDialog" type="text/template">
+        <div id="confirmBookList">
+            <% result.forEach(function (item, index) {  %>
+            <div style="margin:10px">
+                <div style="width:50px;float:right;">
+                    <img style="width:30px;height:30px" src="@CdnPath/Site/Styles/images/word-icon.png">
+                </div>
+                <div style="width:300px;float:right;" id="<%= item.BookId %>">
+                    <%= item.Book.BookName %> جلد  <%= item.VolumeNumber %>
+                </div>
+                <div style="width:100px;float:right">
+                    <i id="btnDownloadBookFile" data="<%= item.VolumeId %>" style="margin-right:5px;color:rgb(189, 54, 95)" class="fa fa-download pointer"></i>
+                    <i id="btnUploadBookFile" data="<%= item.VolumeId %>" style="margin-right:5px;color:rgba(38, 133, 182, 0.69)" class="fa fa-upload pointer"></i>
+                    <i id="btnComfirmBookFile" data="<%= item.VolumeId %>" style="margin-right:5px;color:rgb(52, 181, 88)" class="fa fa-check-square pointer"></i>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+            <% }); %>
+        </div>
+    </script>
+    <script id="tplAddNewBookVolumeFileDialog" type="text/template">
+        <input class="pointer" type="button" onclick="$('#c_inputBookFile').click(); return false;" value="انتخاب فایل" style="margin: 5px" />
+        <input type="text" id="c_fakeInput" style="width: 400px; direction: ltr;" />
+        <input id="c_inputBookFile" type="file" name="" style="display: none" />
+        <input id="btnAddNewBookVolumeFile" class="pointer" style="margin: 10px;float: left" type="button" value="اضافه کردن" />
+    </script>
+    <script id="tplVolume" type="text/template">
+        <div class='ui-layout-center' style='overflow: hidden; width: 100% !important;'></div>
+        <div class='ui-layout-south volumeFooter'>
+            <span class="imgLazyLoading">
+                <img src="@CdnPath/Site/Styles/images/ajax-loader.gif" alt="در حال دریافت متن" />
+            </span>
+            <div class="pageNumberPanel">
+                <span>صفحه </span>
+                <input class="txtPageNumber" type="text" />
+                <span>از</span>
+                <label class="lblPageCount"></label>
+            </div>
+        </div>
+    </script>
+    <script id="tplSearchResultItem" type="text/template">
+        <% var volumeInfo = resultItem.getVolumeInfo();%>
+
+        <div class="resultSource">
+            <%= resultNumber+" - "%>
+            <span class="bookName">
+                <%="کتاب "+volumeInfo.getBook().getBookName()+" - "%>
+            </span>
+            <span class="bookVolume">
+                <%if(volumeInfo.getVolumeNumber()!=0){%>
+                <%="جلد "+volumeInfo.getVolumeNumber()+" - "%>
+                <%}%>
+            </span>
+            <span class="pageNumber">
+                <%="صفحه "+resultItem.getParagraphPageNumber()%>
+            </span>
+        </div>
+        <div class="resultLink" data-id="">
+            <%=resultItem.getParagraphText()%>
+        </div>
+    </script>
+    <script id="tplCommentItem" type="text/template">
+        <div class="commentItem">
+            <div class="ui-layout-
+                  commentHeder">
+                <span class="commentTypeColor fa fa-circle"></span>
+                <span class="commenterName">
+                    <%=commentItem.getPersonName()%>
+                </span>
+                <span class="commentType">
+                    نوع توضیح :
+                    <%=commentItem.getType().getBookCommentTypeTitle() %>
+                </span>
+                <span class="btnCommentHeader iconRemoveComment fa fa-times" style="float: left;" title="حذف"></span>
+                <span class="btnCommentHeader iconEditComment fa fa-pencil-square-o" title="ویرایش"></span>
+            </div>
+            <div class="ui-layout-center commentBody">
+                <%if(commentItem.getText().length<200) %>
+                    <%=commentItem.getText() %>
+                    <% else {%>
+                    <%=commentItem.getText().substring(0,commentItem.getText().substr(0,200).lastIndexOf(" ")) %>
+                    <span class="commentBody-more">(ادامه ...)</span>
+                    <% } %>
+            </div>
+        </div>
+    </script>
+    <script id="tplParagraph" type="text/template">
+        <% var carets = param.carets;%>
+
+    </script>
+    <script id="tplTag" type="text/template">
+        <span class="btn-remove-tag fa fa-times" title="حذف"></span>
+        <%=tag_text %>
+    </script>
+    <meta name="keywords" content="Imam sadr
+          Imam Musa Sadr
+          Imam Sadr books
+          quran
+          جزوه
+          آثار امام صدر
+          مجموعه آثار امام موسی صدر
+          مجموعه آثار امام موسی صدر
+          کتاب های امام صدر
+          سحرگاهان
+          حدیث سحرگاهان
+          قرآن معجزه جاودان
+          داستان آفرینش انسان
+          آفرینش آسمان و زمین">
+    <meta name="description" content="مجموعه آثار امام موسی صدر - حدیث سحرگاهان">
+</head>
+<body>
+    <div id="bookletApplication">
+        <div id="topBar" class="ui-layout-north">
+            <a href="/Home" id="btnComments" class="ToolbarButton alignRight fa fa-home" title="صفحه اصلی"></a>
+            <div id="btnTableOfContent" class="ToolbarButton alignRight fa fa-list toolBarButtonSelected" title="فهرست مطالب"></div>
+            <div id="btnComments" class="ToolbarButton alignRight fa fa-comments" title="توضیحات"></div>
+            <div id="btnTags" class="ToolbarButton alignRight fa fa-tags" title="برچسب‌ها"></div>
+            <div id="btnSearch" class="ToolbarButton alignRight fa fa-search" title="جستجو"></div>
+            <input id="txtSearch" data-style="expand-left" type="text" placeholder="جستجو..." />
+            <!--<div id="btnShowConfirmBookVolumeFileDialog" class="ToolbarButton alignRight fa fa-check-square-o"  title="تایید کتاب ها"></div>-->
+            <div id="pnlUser">
+                <img id="imgUser" src="@CdnPath/Site/Styles/images/user.png" alt="تصویر کاربر" />
+                <div id="pnlUserInfo">
+                    <span id="lblUserFullName"></span>
+                    <span id="btnLogout">(خروج)</span>
+                </div>
+            </div>
+        </div>
+        <div id="mainContent" class="ui-layout-center">           
+            <div></div>
+            <div id="rightBar"></div>
+            <div id="leftBar"></div>
+            <div id="bookletPanel" class="ui-layout-center"></div>
+            <div id="add-popup">
+                <li id="btn-add-comment" class="ToolbarButton alignRight fa fa-comment" title="توضیح"></li>
+                <li id="btn-add-highlight" class="ToolbarButton alignRight fa fa-italic" title="برجسته‌سازی"></li>
+                <li id="btn-add-tag" class="ToolbarButton alignRight fa fa-tag" title="برچسب"></li>
+            </div>
+            <div id="commentPanel" class="ui-layout-west" style="overflow:hidden;">
+                <table style="width:95%;height: 100%;border-spacing:0px 0px;">
+                    <!--<tr>
+                        <td style="padding:0px;">
+                            <div style="width: 100%; height: 35px; border-bottom: solid 1px #ddd;">
+                                <div id="btnCommentMode" class="alignRight commentBarButton">
+                                    <span class="fa fa-comment"></span>
+                                    <span style="margin-right: 3px;">توضیح جدید</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>-->
+                    <tr style="height: 100%;">
+                        <td style="padding:0px;">
+                            <div id="currentCommentsPanel">
+                            </div>
+                            <div id="newCommentArea">
+                                <table class="tblComment">
+                                    <tr style="height:100%;">
+                                        <td class="commentBodyCell">
+                                            <div contenteditable="true" id="txtNewComment" class="txtComment">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 25px;">
+                                        <td>
+<!--                                            <div class="select-style" style="float: right; margin-right: 5px;">-->
+<!--                                                <span class="fa fa-sort-desc"></span>-->
+<!--                                                <select id="cboNewCommentType"></select>-->
+<!--                                            </div>-->
+                                            <button id="btnCancelSaveComment" class="btn-default" style="float: left;">انصراف</button>
+                                            <button id="btnSaveComment" class="btn-default" style="float: left; margin-left: 5px;">تایید</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="editCommentArea">
+                                <table class="tblComment">
+                                    <tr style="height:100%;">
+                                        <td class="commentBodyCell">
+                                            <div contenteditable="true" id="txtCommentEdit" class="txtComment">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 25px;">
+                                        <td>
+                                            <div class="select-style" style="float: right; margin-right: 5px;">
+                                                <span class="fa fa-sort-desc"></span>
+                                                <select id="cboEditCommentType"></select>
+                                            </div>
+
+                                            <button id="btnCancelEditComment" class="btn-default" style="float: left;">انصراف</button>
+                                            <button id="btnEditComment" class="btn-default" style="float: left; margin-left: 5px;">تایید</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="graphPanel" class="ui-layout-south" style="overflow:hidden;">
+                <table style="width:99.6%;height: 100%;border-spacing:0px 0px;">
+                    <tr>
+                        <td style="padding:0px;">
+                            <div style="width: 100%; height: 35px; border-bottom: solid 1px #ddd;">
+                                <div id="btnInLineGraph" class="alignRight commentBarButton">
+                                    <span class="fa fa-thumb-tack"></span>
+                                    <span style="margin-right: 3px;">نمایش گراف</span>
+                                </div>
+                            </div>
+                            <div style="width: 100%; height: 35px; border-bottom: solid 1px #ddd;">
+                                <div id="btnInLineGraphThemplate" class="alignRight commentBarButton">
+                                    <span class="fa fa-thumb-tack"></span>
+                                    <span style="margin-right: 3px;">تغییر نمایش</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="width: 100%;">
+                        <td style="padding:0px;">
+                            <div id="graphDiagramDiv" style="background-color: ghostwhite; border: solid 1px black; width: 100%; height: 410px">
+
+                            </div>
+                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="tableOfContentPanel" class="ui-layout-east">
+                <div class="ui-layout-north">
+                    <div id="addBookVolumeDialog" title="اضاضه کردن فايل"></div>
+                    <div id="addBookDialog" title="اضاضه کردن کتاب"></div>
+                    <!--<div id="btnShowAddBookVolumeFile" class="ToolbarButton alignRight fa fa-plus" title="اضافه کردن فایل کتاب"></div>-->
+                    <input id="txtTOCSearch" placeholder="جستجو در فهرست .. ." type="text" />
+                </div>
+                <div class="ui-layout-center">
+                    <div id="tableOfContentTree"></div>
+                    <div id="tagsPanel"></div>
+                </div>
+            </div>
+        </div>
+        <div id="pnlTimeout" title="Basic dialog">
+            <div style="margin-bottom: 10px;">شما باید مجدداً وارد شوید.</div>
+            <span class="btn-default">تایید</span>
+        </div>
+
+        <div id="confirmBookVolumeFileDialog" title=" تایید  کتاب ها"></div>
+        <div id="addNewBookVolumeFileDialog" title="اضاضه کردن فايل جديد"></div>
+    </div>
+</body>
+</html>
+
