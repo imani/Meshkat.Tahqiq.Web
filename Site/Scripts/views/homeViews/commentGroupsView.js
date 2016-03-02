@@ -2,7 +2,7 @@ var app = app || {};
 
 (function ($) {
     'use strict';
-    app.WorkspacePersonsView = Backbone.View.extend({
+    app.CommentGroupsView = Backbone.View.extend({
         el: '.commentGroups-container',
         initialize: function (commentGroups) {
             this.collection = commentGroup;

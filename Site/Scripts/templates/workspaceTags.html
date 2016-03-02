@@ -1,0 +1,42 @@
+<div class="container main-content">
+    <div class="well">
+        <div class="workspaceToolbar"></div>
+        <h2>برچسب‌ها</h2>
+        <div class="row">
+            <div class="tagGroups-container col-md-8"></div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="list-group">
+                        <a class="notificationFilter list-group-item active" href="/Workspace/commenst/@ViewBag.workspace.WorkspaceId">
+                            همه
+                        </a>
+                        <%foreach (var i = 0 ; i < workspace.getBookVolumes().length; i++)
+                        {
+                            var bookVolume =  workspace.getBookVolumes().models[i];%>
+                            <a class="notificationFilter list-group-item" onclick="getVolumeComments(-1, <%=bookVolume.getVolumeId()%>, <%=workspace.getWorkspaceId()%>)"><%=getVolumeName(bookVolume)%></a>
+                        <%}%>
+                        <hr />
+                        <%foreach (var i = 0; i< workspace.getPersons().length; i++)
+                        {
+                            var person_iterator = workspace.getPersons().models[i];
+                            String tempStr;
+                            if (person_iterator.getPersonId() === person.getPersonId())
+                            {
+                                tempStr = "خودم";
+                            }
+                            else
+                            {
+                                tempStr = FullName(person_iterator);
+                            }%>
+                            <a class="notificationFilter list-group-item" onclick="getPersonComments(<%=person_iterator.getPersonId()%>, -1, <%=workspace.getWorkspaceId()%>)"><%=tempStr%></a>
+                        <%}%>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

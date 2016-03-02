@@ -3,10 +3,10 @@ var app = app || {};
 (function () {
     'use strict';
 
-    app.CommentGroup = Backbone.AssociatedModel.extend({
+    app.tagGroup = Backbone.AssociatedModel.extend({
         defaults: {
             Key: null,
-            Comments: []
+            Tags: []
         },
         constructor: function (attributes, options) {
             Backbone.Model.apply(this, arguments);
@@ -16,14 +16,14 @@ var app = app || {};
         relations: [
             {
                 type: Backbone.Many,
-                key: 'Comments',
-                relatedModel: app.BookComment
+                key: 'Tags',
+                relatedModel: app.BookParagraphTag
             }
         ],
 
         //Getters
         getComments: function(){
-        	return this.get("Comments");
+        	return this.get("Tags");
         },
         getKey: function(){
         	return this.get("Key");
@@ -31,7 +31,7 @@ var app = app || {};
 
         //Setters
         setComments: function(val){
-        	this.set("Comments", val);
+        	this.set("Tags", val);
         },
         setKey: function(val){
         	this.set("Key", val);

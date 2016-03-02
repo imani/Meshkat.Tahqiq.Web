@@ -1,0 +1,60 @@
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <%=tagGroup.Key%>
+        </div>
+        <div class="comments-panel panel-body list-group">
+            <% for(var i=0 ; i < tagGroup.getTags().length; i++)
+            {
+                var tag = tagGroup.getTags().models[i];
+                int maxLength = 500;
+                            var commentText = tag.getText();
+                            if (commentText.length > maxLength)
+                            {
+                                commentText = tag.getText().substring(0, maxLength) + "...";
+                            }
+                            else
+                            {
+                                commentText = tag.Text;
+                            }
+                %>
+                <div id="<%=tag.getId()%>" class="notification list-group-item">
+                    <div class="info">
+                        <div class="notif-user-image thumbnail">
+                            <a href="#">
+                                <img src='<%=tag.getPerson().getImagePath()%>' />
+                            </a>
+                        </div>
+                        <ol class="breadcrumb" style="display: inline-block; vertical-align: middle; background-color: transparent;">
+                            <li><a href="/Library#workspace/2/toc/472394/pg/272818">رهیافت‌های اقتصادی</a></li>
+                            <li><a href="/Library#workspace/2/toc/472397/pg/272891">فصل اول</a></li>
+                            <li><a href="/Library#workspace/2/toc/472400/pg/272970">توزیع ثروت</a></li>
+                        </ol>
+                    </div>
+                <div class="tag-items">
+                    <ul style="list-style: none; float: right;">
+                        <li class="tag-item">
+                            <span class="fa fa-remove"></span>
+                            سلام
+                        </li>
+                        <li class="tag-item">
+                            <span class="fa fa-remove"></span>
+                            سلام
+                        </li>
+                        <li class="tag-item">
+                            <span class="fa fa-remove"></span>
+                            سلام
+                        </li>
+
+                    </ul>
+                </div>
+                    <div class="notif-comment-text"><%=commentText%></div>
+
+                    <span class="fa fa-sign-in book-link" style="" onclick="alert('go to toc')"></span>
+                </div>
+            <%}%>
+        </div>
+    </div>
+
+
+
+

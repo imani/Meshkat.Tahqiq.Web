@@ -2,24 +2,24 @@ var app = app || {};
 
 (function ($) {
     'use strict';
-    app.WorkspaceCommentsView = Backbone.View.extend({
+    app.WorkspaceTagsView = Backbone.View.extend({
         el: '#mainDiv',
         initialize: function (workspace) {
             this.model = workspace;            
             this.render();
         },
         render: function () {
-            this.workspaceCommentsTpl = _.templateFromUrl("/site/scripts/templates/WorkspaceComments.html", { Model: this.model });
-            this.$el.html(this.workspaceCommentsTpl);
+            this.workspaceTagsTpl = _.templateFromUrl("/site/scripts/templates/WorkspaceTags.html", { Model: this.model });
+            this.$el.html(this.workspaceTagsTpl);
             $.ajax({
             type: "GET",
-            url: APIServer + "/BookComment/GetWorkspaceComments",
+            url: APIServer + "/BookComment/GetWorkspaceTags",
             dataType: "json",
             data: { id:this.model.getWorkspaceId(), start: 0, end: 50 },
             contentType: "application/json",
             success: function (data) {
-                var commentGroups = new app.CommentGroups(data);
-                this.commentGroupsView = new app.CommentGroupsView(commentGroups);
+                var tagGroups = new app.TagGroups(data);
+                this.tagGroupsView = new app.TagGroupsView(tagGroups);
             },
             error: function (xhr, status, error) {
                 $("#Result").html(error);
