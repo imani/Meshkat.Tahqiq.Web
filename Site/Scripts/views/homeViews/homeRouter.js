@@ -11,6 +11,7 @@ $(function () {
             "workspace/:workspaceId/Books": "workspaceBooksLink",
             "workspace/:workspaceId/Graphs": "workspaceGraphsLink",
             "workspace/:workspaceId/Comments": "workspaceCommentsLink",
+            "workspace/:workspaceId/Persons": "workspacePersonsLink",
             "profile": "profileLink",
             "allBooks": "allBooksLink",
             "*actions": "homeLink"
@@ -24,9 +25,9 @@ $(function () {
     });
 
     app.app_router.on('route:homeLink', function () {
-        if (readCookie("token") != null) {
+        if (readCookie("token") != null) {            
             if (app.homeBlock != null) {
-                $("#mainDiv").html(_.templateFromUrl("site/scripts/templates/homeUser.html", ));
+                app.userHomeView = new app.UserHomeView(app.homeBlock);
             }
         } else {
             if (app.homeData != null) {
@@ -152,6 +153,30 @@ $(function () {
                     success: function (data) {
                         app.workspace = new app.Workspace(data);
                         app.workspaceBooksView = new app.WorkspaceCommentsView(app.workspace);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#Result").html(error);
+                    }
+                });
+            }
+            
+        }
+    });
+
+    app.app_router.on('route:workspacePersonsLink', function(workspaceId) {
+        if (app.homeData != null) {
+            if (app.workspace != undefined && app.workspace.getWorkspaceId() === workspaceId) {
+                app.workspaceBooksView = new app.WorkspacePersonsView(app.workspace);
+            } else {
+                $.ajax({
+                    type: "GET",
+                    url: APIServer + "/Workspace/GetWorkspace",
+                    dataType: "json",
+                    data: { workspaceId: workspaceId },
+                    contentType: "application/json",
+                    success: function (data) {
+                        app.workspace = new app.Workspace(data);
+                        app.workspaceBooksView = new app.WorkspacePersonsView(app.workspace);
                     },
                     error: function (xhr, status, error) {
                         $("#Result").html(error);

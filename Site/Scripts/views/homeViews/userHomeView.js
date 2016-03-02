@@ -6,32 +6,30 @@ var app = app || {};
     app.UserHomeView = Backbone.View.extend({
         el: 'mainDiv',
         initialize: function (homeBlock) {
-            this.model = homeblock;
-            this.userHometpl = templateFromUrl("site/scripts/templates/homeGuest.html");
+            this.model = homeBlock;
+            this.userHometpl = _.templateFromUrl("site/scripts/templates/homeUser.html", {
+                    WorkspaceHasOwners: this.model.getWorkspaceHasOwners(),
+                    WorkspaceHasAccess: this.model.getWorkspaceHasAccess(),
+                    publicWorkspaces: this.model.getpublicWorkspaces()
+                });
             this.render();
+            var that = this;
             $.ajax({
-            type: "GET",
-            url: APIServer + "/Home/GetNotifications",
-            dataType: "json",
-            data: { unreadOnly:true, size: 50 },
-            contentType: "application/json",
-            success: function (data) {
-                app.category = new app.BookCategory(data);
-                $("#mainDiv").html(_.templateFromUrl("site/scripts/templates/categoryGuest.html", { category: app.category }));
-                app.CategoryView.render();
-            },
-            error: function (xhr, status, error) {
-                $("#Result").html(error);
-            }
-        });
-            this.notifications = new app.NotificationsView()
+                type: "GET",
+                url: APIServer + "/Home/GetNotifications",
+                dataType: "json",
+                data: { unreadOnly:true, size: 50 },
+                contentType: "application/json",
+                success: function (data) {
+                    that.notificationsView = new app.NotificationsView(new app.Notifications);
+                },
+                error: function (xhr, status, error) {
+                    $("#Result").html(error);
+                }
+            });
         },
         render: function () {
-            this.$el.html(_.template(this.userHometpl, {
-                    WorkspaceHasOwners: app.homeBlock.getWorkspaceHasOwners(),
-                    WorkspaceHasAccess: app.homeBlock.getWorkspaceHasAccess(),
-                    publicWorkspaces: app.homeBlock.getpublicWorkspaces()
-                }));
+            return this.$el.html(this.userHometpl);
         }
     });
 })(jQuery);

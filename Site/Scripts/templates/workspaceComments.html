@@ -1,1 +1,44 @@
-workspaceComments.html
+<div class="container main-content">
+    <div class="well">
+        <div class="wotkspaceToolbar"></div>
+        <h2>توضیحات</h2>
+        <div class="row">
+            <div class="commentGroups-container col-md-8"></div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="sidebar-filters-list list-group">
+                        <a class="list-group-item active" href="/Workspace/comments/@ViewBag.workspace.WorkspaceId">
+                            همه
+                        </a>
+                        <hr/>
+                        <%for(var i =0 ; i < workspace.getBookVolumes().length; i++)
+                        {
+                        	var bookVolume = workspace.getBookVolumes().models[i];%>
+                            <a class="list-group-item" onclick="getComments(event, -1, <%=bookVolume.VolumeId%>, <%=workspace.WorkspaceId%>)">
+                            	<%=getVolumeName(bookVolume)%>
+                            </a>
+                        <%}%>
+                        <hr/>
+                        <%for(var j = 0; j< workspace.getPersons().length ; j++)
+                        {
+                        	var person_iterator = workspace.getPersons().models[j];
+                            var tempStr;
+                            if (person_iterator.getPersonId() === person.getPersonId())
+                            {
+                                tempStr = "خودم";
+                            }
+                            else
+                            {
+                                tempStr = FullName(person_iterator);
+                            }%>
+                            <a class="list-group-item" onclick="getComments(event, <%=person_iterator.getPersonId()%>, -1, <%=workspace.getWorkspaceId()%>)"><%=tempStr%></a>
+                        <%}%>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

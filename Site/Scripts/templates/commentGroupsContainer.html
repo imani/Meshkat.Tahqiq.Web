@@ -1,0 +1,43 @@
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <%=commentGroup.Key%>
+        </div>
+        <div class="comments-panel panel-body list-group">
+            <% for(var i=0 ; i < commentGroup.getComments().length; i++)
+            {
+                var comment = commentGroup.getComments().models[i];
+                int maxLength = 500;
+                            var commentText = comment.getText();
+                            if (commentText.length > maxLength)
+                            {
+                                commentText = comment.getText().substring(0, maxLength) + "...";
+                            }
+                            else
+                            {
+                                commentText = comment.Text;
+                            }
+                %>
+                <div id="<%=comment.getId()%>" class="notification list-group-item">
+                    <div class="info">
+                        <div class="notif-user-image thumbnail">
+                            <a href="#">
+                                <img src='<%=comment.getPerson().getImagePath()%>' />
+                            </a>
+                        </div>
+                        <ol class="breadcrumb" style="display: inline-block; vertical-align: middle; background-color: transparent;">
+                            <li><a href="/Library#workspace/2/toc/472394/pg/272818">رهیافت‌های اقتصادی</a></li>
+                            <li><a href="/Library#workspace/2/toc/472397/pg/272891">فصل اول</a></li>
+                            <li><a href="/Library#workspace/2/toc/472400/pg/272970">توزیع ثروت</a></li>
+                        </ol>
+                    </div>
+                    <div class="notif-comment-text"><%=commentText%></div>
+
+                    <span class="fa fa-sign-in book-link" style="" onclick="alert('go to toc')"></span>
+                </div>
+            <%}%>
+        </div>
+    </div>
+
+
+
+

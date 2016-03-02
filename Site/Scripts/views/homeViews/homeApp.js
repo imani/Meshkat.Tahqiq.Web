@@ -17,7 +17,6 @@ _.mixin({
                 url: url,
                 async:false,
                 success: function (data) {
-                    debugger;
                     templateHtml = data;
                 },
                 error: function (xhr, status, error) {

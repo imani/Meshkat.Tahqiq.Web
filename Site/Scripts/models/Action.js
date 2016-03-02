@@ -33,19 +33,42 @@ var app = app || {};
         ],
 
         //Getters
-        getVolumes: function () {
-            return this.get("Volumes");
-        },
-        getCategories: function () {
-            return this.get("Categories");
-        },
-
+	      getActionId: function() {
+	      	return this.get("ActionId");
+	      	 },
+	     getType: function() {
+	     	return this.get("ActionType");
+	     	 },
+	     getActionDoer: function() {
+	     	return this.get("ActionDoer");
+	     	 },
+	     getActionObject: function() {
+	     	return this.get("ActionObject");
+	     	 },
+	     getWorkspace: function() {
+	     	return this.get("Workspace");
+	     	 },
+	     getDate: function() {
+	     	return this.get("Date");
+	     	 },
         //Setters
-        setVolumes: function (val) {
-            this.set("Volumes", val);
-        },
-        setCategories: function (val) {
-            this.set("Categories", val);
-        }
+        setActionId: function(val) {
+	      	 this.set("ActionId", val);
+	      	 },
+	    setType: function(val) {
+	     	 this.set("ActionType", val);
+	     	 },
+	    setActionDoer: function(val) {
+	     	 this.set("ActionDoer", val);
+	     	 },
+	    setActionObject: function(val) {
+	     	 this.set("ActionObject", val);
+	     	 },
+	    setWorkspace: function(val) {
+	     	 this.set("Workspace", val);
+	     	 },
+	    setDate: function(val) {
+	     	 this.set("Date", val);
+	     	 }
     });
 })();

@@ -1,0 +1,51 @@
+<script src="Site/Scripts/Lib/d3.min.js"></script>
+<style>
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .area {
+        fill: #88D3A1;
+    }
+</style>
+<div class="container main-content">
+    <div class="well">
+       	<div class="workspaceToolbar"></div>
+        <h2>همکاران</h2>
+        <div class="row" style="margin: 0px;">
+            <div class="panel panel-default">
+                <div class="panel-body activities-area-chart chart-panel-body">
+                    <!-- activities area chart -->
+                </div>
+            </div>
+            <div class="col-md-6" style="float: right">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="notif-user-image thumbnail" style="vertical-align: middle;">
+                            <a href="#">
+                                <img src='/Files/Images/88102102.png'/>
+                            </a>
+                        </div>
+                        <h3 class="panel-title" style="vertical-align: middle; display: inline-block;">Panel title</h3>
+                    </div>
+                    <div class="panel-body chart-panel-body person-activities-chart" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var width = $(".activities-area-chart").width();
+        showDateActivitiesChart(".activities-area-chart", width, 250);
+        var width = $(".person-activities-chart").width();
+        showDateActivitiesChart(".person-activities-chart", width , width * 0.52);
+    })
+</script>
+
+

@@ -6,15 +6,12 @@ var app = app || {};
     app.NotificationsView = Backbone.View.extend({
         el: '#notifications-container',
         initialize: function (notifications) {
-            this.model = notifications;
-            this.notificationstpl = templateFromUrl("site/scripts/templates/notifications.html");
+            this.collection = notifications;
+            this.notificationstpl = _.templateFromUrl("site/scripts/templates/notifications.html", { Model: this.collection.models});
             this.render();
         },
         render: function () {
-            this.$el.html(_.template(this.userHometpl, {
-                    Model: notifications
-                }));
-            this.$el.html()
+            return this.$el.html(this.notificationstpl);
         }
     });
 })(jQuery);

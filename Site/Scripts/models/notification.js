@@ -16,31 +16,37 @@ var app = app || {};
         //Relations
         relations: [
             {
-                type: Backbone.Many,
-                key: 'Volumes',
-                relatedModel: app.BookVolume
+                type: Backbone.One,
+                key: 'Action',
+                relatedModel: app.Action
             },
             {
-                type: Backbone.Many,
-                key: 'Categories',
-                relatedModel: app.BookCategory
+                type: Backbone.One,
+                key: 'Reciever',
+                relatedModel: app.Person
             }
         ],
 
         //Getters
-        getVolumes: function () {
-            return this.get("Volumes");
+        getAction: function(){
+        	return this.get("Action");
         },
-        getCategories: function () {
-            return this.get("Categories");
+        getReciever: function(){
+        	return this.get("Reciever");
+        },
+        isRead: function(){
+        	return this.get("isREad");
         },
 
         //Setters
-        setVolumes: function (val) {
-            this.set("Volumes", val);
+        setAction: function(val){
+        	this.set("Action", val);
         },
-        setCategories: function (val) {
-            this.set("Categories", val);
-        }
+        setReciever: function(val){
+        	this.set("Reciever", val);
+        },
+        setRead: function(val){
+        	this.set("isREad", val);
+        },
     });
 })();
