@@ -15,9 +15,9 @@
         },
         render:function() {
             if (readCookie("token") == null)
-                $(this.el).html(_.templateFromUrl("/site/scripts/templates/navbarGuest.html"));
+                $(this.el).html(_.templateFromUrl("site/scripts/templates/navbarGuest.html"));
             else
-                $(this.el).html(_.templateFromUrl("/site/scripts/templates/navbarUser.html", { person: app.person, hasUnreadNotifications: null }));
+                $(this.el).html(_.templateFromUrl("site/scripts/templates/navbarUser.html", { person: app.person, hasUnreadNotifications: null }));
         },
         hoverLogin:function() {
             $("li.dropdown.mega-dropdown a").parent().toggleClass("open");
@@ -39,7 +39,7 @@
 
                         $.ajax({
                             type: "GET",
-                            url: "/Home/GetIdentity",
+                            url: APIServer + "/Home/GetIdentity",
                             dataType: "json",
                             contentType: "application/json",
                             headers: { Authorization: readCookie("token") },

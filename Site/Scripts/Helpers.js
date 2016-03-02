@@ -39,7 +39,7 @@ function timeAgo(previous) {
     }
 }
 
-function getPersonFullName(person){
+function FullName(person){
     return person.getPersonFirstName + " " + person.getPersonLastName;
 }
 

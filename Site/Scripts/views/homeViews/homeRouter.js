@@ -7,9 +7,10 @@ $(function () {
             "home": "homeLink",
             "workspace": "workspaceLink",
             "workspaceNew": "workspaceNewLink",
-            "workspaceOverview/:workspaceId": "workspaceOverviewLink",
-            "workspaceBooks/:workspaceId": "workspaceBooksLink",
-            "workspaceGraphs/:workspaceId": "workspaceGraphsLink",
+            "workspace/:workspaceId": "workspaceOverviewLink",
+            "workspace/:workspaceId/Books": "workspaceBooksLink",
+            "workspace/:workspaceId/Graphs": "workspaceGraphsLink",
+            "workspace/:workspaceId/Comments": "workspaceCommentsLink",
             "profile": "profileLink",
             "allBooks": "allBooksLink",
             "*actions": "homeLink"
@@ -25,15 +26,11 @@ $(function () {
     app.app_router.on('route:homeLink', function () {
         if (readCookie("token") != null) {
             if (app.homeBlock != null) {
-                $("#mainDiv").html(_.templateFromUrl("/site/scripts/templates/homeUser.html", {
-                    WorkspaceHasOwners: app.homeBlock.getWorkspaceHasOwners(),
-                    WorkspaceHasAccess: app.homeBlock.getWorkspaceHasAccess(),
-                    publicWorkspaces: app.homeBlock.getpublicWorkspaces()
-                }));
+                $("#mainDiv").html(_.templateFromUrl("site/scripts/templates/homeUser.html", ));
             }
         } else {
             if (app.homeData != null) {
-                $("#mainDiv").html(_.templateFromUrl("/site/scripts/templates/homeGuest.html"));
+                $("#mainDiv").html(_.templateFromUrl("site/scripts/templates/homeGuest.html"));
                 app.RecentBookView.render();
                 app.CategoryView.render();
             }
@@ -44,13 +41,13 @@ $(function () {
         
         $.ajax({
             type: "GET",
-            url: "/Home/GetCategory",
+            url: APIServer + "/Home/GetCategory",
             dataType: "json",
             data: { id:app.categoryId },
             contentType: "application/json",
             success: function (data) {
                 app.category = new app.BookCategory(data);
-                $("#mainDiv").html(_.templateFromUrl("/site/scripts/templates/categoryGuest.html", { category: app.category }));
+                $("#mainDiv").html(_.templateFromUrl("site/scripts/templates/categoryGuest.html", { category: app.category }));
                 app.CategoryView.render();
             },
             error: function (xhr, status, error) {
@@ -60,7 +57,7 @@ $(function () {
     });
 
     app.app_router.on('route:profileLink', function () {
-        $("#mainDiv").html(_.templateFromUrl("/site/scripts/templates/profile.html", {person: app.person}));
+        $("#mainDiv").html(_.templateFromUrl("site/scripts/templates/profile.html", {person: app.person}));
     });
 
     app.app_router.on('route:workspaceNewLink', function () {
@@ -69,7 +66,7 @@ $(function () {
 
     app.app_router.on('route:allBooksLink', function () {
         if (app.homeData != null) {
-            $("#mainDiv").html(_.templateFromUrl("/site/scripts/templates/allBooks.html"));
+            $("#mainDiv").html(_.templateFromUrl("site/scripts/templates/allBooks.html"));
         }
     });
 
@@ -77,7 +74,7 @@ $(function () {
         if (app.homeData != null) {
             $.ajax({
                 type: "GET",
-                url: "/Workspace/GetWorkspace",
+                url: APIServer + "/Workspace/GetWorkspace",
                 dataType: "json",
                 data: { workspaceId: workspaceId },
                 contentType: "application/json",
@@ -100,7 +97,7 @@ $(function () {
             } else {
                 $.ajax({
                     type: "GET",
-                    url: "/Workspace/GetWorkspace",
+                    url: APIServer + "/Workspace/GetWorkspace",
                     dataType: "json",
                     data: { workspaceId: workspaceId },
                     contentType: "application/json",
@@ -124,7 +121,7 @@ $(function () {
             } else {
                 $.ajax({
                     type: "GET",
-                    url: "/Workspace/GetWorkspace",
+                    url: APIServer + "/Workspace/GetWorkspace",
                     dataType: "json",
                     data: { workspaceId: workspaceId },
                     contentType: "application/json",
@@ -140,6 +137,32 @@ $(function () {
             
         }
     });
+
+    app.app_router.on('route:workspaceCommentsLink', function(workspaceId) {
+        if (app.homeData != null) {
+            if (app.workspace != undefined && app.workspace.getWorkspaceId() === workspaceId) {
+                app.workspaceBooksView = new app.WorkspaceCommentsView(app.workspace);
+            } else {
+                $.ajax({
+                    type: "GET",
+                    url: APIServer + "/Workspace/GetWorkspace",
+                    dataType: "json",
+                    data: { workspaceId: workspaceId },
+                    contentType: "application/json",
+                    success: function (data) {
+                        app.workspace = new app.Workspace(data);
+                        app.workspaceBooksView = new app.WorkspaceCommentsView(app.workspace);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#Result").html(error);
+                    }
+                });
+            }
+            
+        }
+    });
+
+
 
     
 

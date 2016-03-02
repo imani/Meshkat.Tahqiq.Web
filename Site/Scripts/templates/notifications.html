@@ -1,0 +1,164 @@
+<%if (Model==null){%>
+    <div style="text-align: center; margin-top: 20px; color: #bbb;">
+        <i class="fa fa-bell-slash-o fa-4x" style=" margin: 10px;"></i>
+        <h3> دوستان شما تا کنون فعالیتی انجام نداده‌اند</h3>
+    </div>
+
+<%}else{%>
+    <div class="notifications-panel panel-body list-group">
+        <%for(var i = 0; i < Model.length; i++){
+            var notification = Model[i]; %>
+            <div id="@notification.Action.ActionId" class="notification list-group-item">
+                <%switch (notification.getAction().getType().getTypeId())
+                {
+                    case 1:%>
+                        //add person to workspace
+                        <i class="fa fa-user-plus fa-2x"></i>
+                        <div class="notif-date">
+                            <%timeAgo(notification.getAction().getDate())%>
+                        </div>
+                        <div class="notif-text">
+                            <a href="#" class="user-name"> <%FullName(notification.getAction().ActionDoer())%> </a>
+                            <%{
+                                if (notification.getAction().getActionDoer().getPersonId() == notification.getReceiver().getPersonId())
+                                {%>
+                                    شما
+                                <%}
+                                else
+                                {%>
+                                    <a href='#' class='user-name'> "<%FullName(notification.getAction().getPersonObject())</a>
+                                <%}
+                            }%>
+                            را به
+                            <a href="#" class="workspace-name"><%notification.getAction().getWorkspace().getWorkspaceTitle()%></a>
+                            اضافه کرد.
+                        </div>
+                        <%break;
+
+                    case 2:%>
+                        //remove person from workspace
+                        <i class="fa fa-user-times fa-2x"></i>
+                        <div class="notif-date">
+                            <%timeAgo(notification.getAction().getDate())%>
+                        </div>
+                        <div class="notif-text">
+                            <a href="#" class="user-name"> <%FullName(notification.getAction().getActionDoer())%> ، </a>
+                            <%
+                                if (notification.getAction().getActionDoer().getPersonId() == notification.getReceiver().getPersonId())
+                                {%>
+                                    شما 
+                                <%}
+                                else
+                                {%>
+                                    <a href='#' class='user-name'> <%FullName(notification.getAction().getPersonObject())%></a>
+                                <%}
+                            }%>
+                            را از
+                            <a href="#" class="workspace-name"><%notification.getAction().getWorkspace().getWorkspaceTitle()%></a>
+                            حذف کرد.
+                        </div>
+                        <%break;
+
+                    case 3:%>
+                        //person leaves workspace
+                        <i class="fa fa-sign-out fa-2x"></i>
+                        <div class="notif-date">
+                            <%timeAgo(notification.getAction().getDate())%>
+                        </div>
+                        <div class="notif-text">
+                            <a href="#" class="user-name"> <%FullName(notification.getAction().getActionDoer())%></a> ،
+                            از
+                            <a href="#" class="workspace-name"><%notification.getAction().getWorkspace().getWorkspaceTitle()%></a>
+                            خارج شد.
+                        </div>
+                        <%break;
+
+                    case 4:%>
+                        //add volume to workspace
+                        <i class="fa fa-plus-square fa-2x"></i>
+                        <div class="notif-date">
+                            <%timeAgo(notification.getAction().getDate())%>
+                        </div>
+                        <div class="notif-text">
+                            <a href="#" class="user-name"> <%FullName(notification.getAction().getActionDoer())%></a> ، کتاب
+                                <a href='#' class='volume-name'> <%getVolumeName(notifivation.getAction().getVolumeObject()%> </a>
+                            }%>
+                            را به
+                            <a href="#" class="workspace-name"><%=notification.getAction().getWorkspace().getWorkspaceTitle()%></a>
+                            اضافه کرد.
+                        </div>
+                        <%break;
+
+                    case 5:%>
+                        //remove volume from workspace
+                        <i class="fa fa-minus-square fa-2x"></i>
+                        <div class="notif-date">
+                            <%=timeAgo(notification.getAction().getDate())%>
+                        </div>
+                        <div class="notif-text">
+                            <a href="#" class="user-name"> <%=FullName(notification.getAction().getActionDoer())%></a> ، کتاب
+                                <a href="#" class="workspace-name"><%=notification.getAction().getWorkspace().getWorkspaceTitle()%></a>
+                            را از
+                            <a href="#" class="workspace-name"><%=notification.getAction().getWorkspace().getWorkspaceTitle()%></a>
+                            حذف کرد.
+                        </div>
+                        <% break;
+
+                    case 6:%>
+                        //edit comment
+                        <%break;
+
+                    case 7:%>
+                        //add comment to workspace
+                        <i class="fa fa-comment fa-2x"></i>
+                        <div class="notif-date">
+                            <%=timeAgo(notification.getAction().getDate())%>
+                        </div>
+                        <div class="notif-text">
+                            <a href="#" class="user-name"> <%=FullName(notification.getAction().getActionDoer())%></a> ،
+                            حاشیه جدیدی را به
+                            <a href="#" class="workspace-name"><%=notification.getAction().getWorkspace().getWorkspaceTitle()%></a>
+                            اضافه کرد.
+                        </div>
+                        <div class="notif-user-image thumbnail">
+                            <a href="#">
+                                <img src='<%=notification.getAction().getActionDoer().getPersonImagePath()'/>
+                            </a>
+                        </div>
+                        <%
+                                var maxLength = 500;
+                                var commentText = notification.getAction().getCommentObject().getText();
+                                if (commentText.Length > maxLength)
+                                {
+                                    commentText = notification.getAction().getCommentObject().getText().substring(0, maxLength) + "..."
+                                }
+                                else
+                                {
+                                    commentText = notification.getAction().getCommentObject().getText();
+                                }
+                            }%>
+                        <div class="notif-comment-text"><%=commentText%></div>
+                        <%break;
+
+                    case 8:%>
+                        //add graph to workspace
+                        <i class="fa fa-share fa-2x"></i>
+                        <div class="notif-date">
+                            <%=timeAgo(notification.getAction().getDate())%>
+                        </div>
+                        <div class="notif-text">
+                            <a href="#" class="user-name"> <%=FullName(notification.getAction().getActionDoer())%></a> ، گراف
+                            <a href="#" class="graph-name"> <%=notification.Action.getGraphObject().getGraphTitle()%></a>
+                            را به
+                            <a href="#" class="workspace-name"><%=notification.Action.getWorkspace().getWorkspaceTitle()%></a>
+                            اضافه کرد.
+                        </div>
+                        <%break;
+
+                }%>
+                <span class="fa fa-check mark-as-read" id="<%=notification" style="position: absolute; top: 40%; left: 10px; cursor: pointer;" onclick="readNotification(<%=notification.getAction().getActionId()%> , <%=notification.getReceiver().getPersonId()%>)"></span>
+            </div>
+        <%}%>
+    </div>
+<%}%>
+

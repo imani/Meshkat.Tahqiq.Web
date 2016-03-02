@@ -51,23 +51,22 @@ function Login() {
             function (data) {
                 createCookie("token", "Bearer " + data.access_token, 1);
                 createCookie("username", $("#username").val(), 1);
-                
-                $.ajax({
+                /*$.ajax({
                     type: "GET",
                     url: "/Home/GetIdentity",
                     dataType: "json",
                     contentType: "application/json",
                     headers: { Authorization: readCookie("token") },
                     success:
-                        function (data) {
+                        function (data) {*/
                             l.stop();
                             location.reload();
-                        },
+                        /*},
                     error: function (xhr, status, error) {
                         showMessage(error, messageList.ERROR_TITLE, "error", xhr.status);
                         $("#loginError").show();
                     }
-                });
+                });*/
             },
         error: function (xhr, status, error) {
             showMessage(error, messageList.ERROR_TITLE, "error", xhr.status);
@@ -79,21 +78,21 @@ function Login() {
 function Logout() {
     var l = Ladda.create(document.querySelector('#logout-button'));
     l.start();
-    $.ajax({
+    /*$.ajax({
         type: "GET",
         url: "/Home/logout" ,
         success:
-            function (data) {
+            function (data) {*/
                 eraseCookie("token")
-                location.replace("/home");
-            },
+                location.reload();
+            /*},
         error: function (xhr, status, error) {
             showMessage(error, messageList.ERROR_TITLE, "error", xhr.status);
             $("#loginError").show();
         },
         contentType: "application/x-www-form-urlencoded",
         cache: false
-    });
+    });*/
 }
 
 

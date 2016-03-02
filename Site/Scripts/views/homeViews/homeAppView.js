@@ -13,16 +13,17 @@
 
             $.ajax({
                 type: "GET",
-                url: "/Home/GetHomeData",
+                url: APIServer+ "/Home/GetHomeData",
                 data: { count: 20 },
                 dataType: "json",
+                contentType: "application/x-www-form-urlencoded",
                 success:
                     function (data) {
                         app.homeData = new app.HomeData(data);
                         if (readCookie("token") != null) {
                             $.ajax({
                                 type: "GET",
-                                url: "/Home/GetHomeUserData",
+                                url: APIServer + "/Home/GetHomeUserData",
                                 dataType: "json",
                                 headers: { Authorization: readCookie("token"), client_id: 'MsktLib' },
                                 contentType: "application/json",

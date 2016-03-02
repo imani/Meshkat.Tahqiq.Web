@@ -10,19 +10,19 @@
     <div class="panel-body">
         <ul class="indicators" style="display: table; width: 100%; text-align: center; margin-bottom: 0px;">
             <%if(Model.getBookVolumes().length > 0){%>
-            <li style="display: table-cell"><i class="fa fa-book"></i><a href="#workspaceBooks/<%=Model.getWorkspaceId()%>"><%=Model.getBookVolumes().length%> کتاب</a></li>
+            <li style="display: table-cell"><i class="fa fa-book"></i><a href="#workspace/<%=Model.getWorkspaceId()%>/Books"><%=Model.getBookVolumes().length%> کتاب</a></li>
             <%}
             if(Model.getGraphs().length > 0){%>
-            <li style="display: table-cell"><i class="fa fa-share-alt"></i><a href="#workspaceGraphs/<%=Model.getWorkspaceId()%>"><%=Model.getGraphs().length%> نمودار</a></li>
+            <li style="display: table-cell"><i class="fa fa-share-alt"></i><a href="#workspace/<%=Model.getWorkspaceId()%>/Graphs"><%=Model.getGraphs().length%> نمودار</a></li>
             <%}
             if(Model.getCommentsNumber() > 0){%>
-            <li style="display: table-cell"><i class="fa fa-comments"></i><a href="#workspaceComments/<%=Model.getWorkspaceId()%>"><%=Model.getCommentsNumber()%> توضیح</a></li>
+            <li style="display: table-cell"><i class="fa fa-comments"></i><a href="#workspace/<%=Model.getWorkspaceId()%>/Comments"><%=Model.getCommentsNumber()%> توضیح</a></li>
             <%}
             if(Model.getTagsNumber() > 0){%>
-            <li style="display: table-cell"><i class="fa fa-tags"></i><a href="#workspaceTags/<%=Model.getWorkspaceId()%>"><%=Model.getTagsNumber()%> برچسب</a></li>
+            <li style="display: table-cell"><i class="fa fa-tags"></i><a href="#workspace/<%=Model.getWorkspaceId()%>/Tags"><%=Model.getTagsNumber()%> برچسب</a></li>
             <%}
             if(Model.getPersons().length > 0){%>
-            <li style="display: table-cell"><i class="fa fa-users"></i><a href="#workspacePersons/<%=Model.getWorkspaceId()%>"><%=Model.getPersons().length%> همکار</a></li>
+            <li style="display: table-cell"><i class="fa fa-users"></i><a href="#workspace/<%=Model.getWorkspaceId()%>/Persons"><%=Model.getPersons().length%> همکار</a></li>
             <%}%>
         </ul>
     </div>

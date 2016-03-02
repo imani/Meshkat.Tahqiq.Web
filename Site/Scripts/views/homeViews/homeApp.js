@@ -13,17 +13,22 @@ _.mixin({
             templateHtml = this.cache[url];
         } else {
             $.ajax({
+                type: "GET",
                 url: url,
-                method: "GET",
-                async: false,
+                async:false,
                 success: function (data) {
+                    debugger;
                     templateHtml = data;
-                }
+                },
+                error: function (xhr, status, error) {
+
+                },
+                contentType: "application/json; charset=utf-8",
+                cache: false
             });
 
             this.cache[url] = templateHtml;
         }
-
         return _.template(templateHtml, data, settings);
     }
 });
